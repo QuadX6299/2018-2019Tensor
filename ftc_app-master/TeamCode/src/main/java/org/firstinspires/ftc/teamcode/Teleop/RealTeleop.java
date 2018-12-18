@@ -83,7 +83,7 @@ public class RealTeleop extends MyOpModeNEW {
 
         waitForStart();
 
-        armStart = motorArmLeft.getCurrentPosition();
+        //armStart = motorArmLeft.getCurrentPosition();
         collectEncoder = armStart - 300;
         scoreEncoder = armStart-150;
 
@@ -121,12 +121,12 @@ public class RealTeleop extends MyOpModeNEW {
 
             if (gamepad1.dpad_down)
             {
-                mineralBlocker.setPosition(0.1);
+                mineralBlocker.setPosition(0.2);
             }
 
             if(gamepad1.dpad_up)
             {
-                mineralBlocker.setPosition(0.9);
+                mineralBlocker.setPosition(0.6);
             }
 
 //            if (gamepad1.b) {
@@ -179,8 +179,8 @@ public class RealTeleop extends MyOpModeNEW {
 
 
             if (Math.abs (gamepad2.left_stick_y) > 0.05){
-                motorArmLeft.setPower(gamepad2.left_stick_y*.75);
-                motorArmRight.setPower(-gamepad2.left_stick_y*.75);
+                motorArmLeft.setPower(gamepad2.left_stick_y);
+                motorArmRight.setPower(-gamepad2.left_stick_y);
             }else{
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
@@ -242,11 +242,11 @@ public class RealTeleop extends MyOpModeNEW {
 
             telemetry.addData("allSlow: ", allSlow);
             telemetry.addData("turnSlow: ", turnSlow);
-            telemetry.addData("ArmEncoder: ", motorArmLeft.getCurrentPosition());
-            telemetry.addData("leftBox: ", leftBox.getPosition());
-            telemetry.addData("rightBox: ", rightBox.getPosition());
-            telemetry.addData("leftBoxRotate: ", leftBoxRotate.getPosition());
-            telemetry.addData("rightBoxRotate: ", rightBoxRotate.getPosition());
+//            telemetry.addData("ArmEncoder: ", motorArmLeft.getCurrentPosition());
+//            telemetry.addData("leftBox: ", leftBox.getPosition());
+//            telemetry.addData("rightBox: ", rightBox.getPosition());
+//            telemetry.addData("leftBoxRotate: ", leftBoxRotate.getPosition());
+//            telemetry.addData("rightBoxRotate: ", rightBoxRotate.getPosition());
             telemetry.update();
         }
     }

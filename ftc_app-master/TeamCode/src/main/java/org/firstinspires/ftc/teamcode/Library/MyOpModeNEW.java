@@ -167,7 +167,7 @@ public abstract class MyOpModeNEW extends LinearOpMode {
 
         mineralBlocker = hardwareMap.servo.get("mineralBlocker");
 
-        leftBox = hardwareMap.servo.get("leftBox");
+//        leftBox = hardwareMap.servo.get("leftBox");
         rightBox = hardwareMap.servo.get("rightBox");
 
 
