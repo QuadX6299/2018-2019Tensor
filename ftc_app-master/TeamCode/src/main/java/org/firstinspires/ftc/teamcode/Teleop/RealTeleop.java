@@ -169,11 +169,11 @@ public class RealTeleop extends MyOpModeNEW {
             else
                 manip.setPower(0);
 
-            if (gamepad1.dpad_up) {
-                latch.setPosition(0.75);
-            } else if (gamepad1.dpad_down) {
-                latch.setPosition(0.0);
-            }
+//            if (gamepad1.dpad_up) {
+//                latch.setPosition(0.75);
+//            } else if (gamepad1.dpad_down) {
+//                latch.setPosition(0.0);
+//            }
 
             //_____________________GAMEPAD 2 CODE_____________________________________________________
 
