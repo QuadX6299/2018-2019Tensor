@@ -187,13 +187,7 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         motorBR = hardwareMap.dcMotor.get("motorBR");
         motorFL = hardwareMap.dcMotor.get("motorFL");
         motorFR = hardwareMap.dcMotor.get("motorFR");
-
-
-        leftBox = hardwareMap.servo.get("leftBox");
-        rightBox = hardwareMap.servo.get("rightBox");
-
         gyroInit();
-
 
     }
     public void hwMapManip(HardwareMap type) {
@@ -233,6 +227,8 @@ public abstract class MyOpModeNEW extends LinearOpMode {
             milliseconds = 0;
         Thread.sleep(milliseconds);
     }
+
+
 
     public void setMotors(double left, double right) { //Moves forward when both values are positive.
         if (!opModeIsActive())
