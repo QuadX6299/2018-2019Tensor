@@ -435,6 +435,24 @@ public abstract class MyOpModeNEW extends LinearOpMode {
 
     }
 
+    public void moveArm(double deg, int tim)
+    {
+        ElapsedTime time = new ElapsedTime();
+        //IDK IF THIS MOVES THE RIGHT DIRECTION TEST ON TABLE FIRST
+        while (deg > getEncoderAverageArm() + 5 || deg < getEncoderAverageArm() - 5 && time.milliseconds() < tim) {
+            if (deg > getEncoderAverageArm()) {
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+            } else if (deg < getEncoderAverageArm()) {
+                motorArmLeft.setPower(-0.5);
+                motorArmRight.setPower(0.5);
+            } else {
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+            }
+        }
+    }
+
 
 
     public double getGyroYaw(){

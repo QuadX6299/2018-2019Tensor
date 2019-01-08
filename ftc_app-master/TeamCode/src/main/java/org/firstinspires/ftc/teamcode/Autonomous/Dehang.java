@@ -80,6 +80,7 @@ public class Dehang extends MyOpModeNEW
 
         Thread.sleep(1500);
 
+        //try the dehang method with encoders that is in the library
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
         Thread.sleep(835);
