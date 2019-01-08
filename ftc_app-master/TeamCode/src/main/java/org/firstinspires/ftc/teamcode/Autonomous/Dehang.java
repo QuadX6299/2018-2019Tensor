@@ -88,12 +88,18 @@ public class Dehang extends MyOpModeNEW
         motorArmRight.setPower(0);
 
 
-        Thread.sleep(4000);
+        Thread.sleep(1000);
 
-        moveTo(-0.4,75);
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(850);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+        moveTo(0.4,75);
 
 
-        turnCorr(0.4,-45,2000);
+        //turnCorr(0.4,-45,2000);
 
         telemetry.addData("latchPos: ", latch.getPosition());
         telemetry.update();

@@ -85,7 +85,7 @@ public class TensorFlowMainAuto extends MyOpModeNEW
         tfod.activate();
 
 
-
+    while(time.milliseconds() < 4000) {
         if (tfod != null) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
@@ -98,28 +98,26 @@ public class TensorFlowMainAuto extends MyOpModeNEW
                     int silverMineral2X = -1;
                     for (Recognition recognition : updatedRecognitions) {
                         if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                            Thread.sleep(750);
                             goldMineralX = (int) recognition.getLeft();
                         } else if (silverMineral1X == -1) {
+                            Thread.sleep(750);
                             silverMineral1X = (int) recognition.getLeft();
                         } else {
+                            Thread.sleep(750);
                             silverMineral2X = (int) recognition.getLeft();
                         }
                     }
-                    if (goldMineralX == -1 && silverMineral1X != -1 && silverMineral2X !=-1) {
+                    if (goldMineralX == -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+                        position = "Left";
+                        telemetry.addData("Gold Mineral Position", "Left");
+                    } else if (goldMineralX != 1 && silverMineral1X != -1) {
+                        if (goldMineralX > silverMineral1X) {
                             position = "Right";
                             telemetry.addData("Gold Mineral Position", "Right");
-                    }
-                    else if (goldMineralX != 1 && silverMineral1X != -1)
-                    {
-                        if (goldMineralX > silverMineral1X)
-                        {
+                        } else {
                             position = "Center";
                             telemetry.addData("Gold Mineral Position", "Center");
-                        }
-                        else
-                        {
-                            position = "Left";
-                            telemetry.addData("Gold Mineral Position", "Left");
 
                         }
                     }
@@ -127,9 +125,40 @@ public class TensorFlowMainAuto extends MyOpModeNEW
                 telemetry.update();
             }
         }
+    }
+
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(250);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+        while(time.milliseconds()<2000) {
+            latch.setPosition(0.75);
+        }
+
+        Thread.sleep(1500);
+
+        //try the dehang method with encoders that is in the library
+        motorArmLeft.setPower(0.5);
+        motorArmRight.setPower(-0.5);
+        Thread.sleep(850);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
 
 
-        moveTo(-0.4,75,1000);
+        Thread.sleep(1000);
+
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(850);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+        moveTo(0.4,100);
+
+
+        //moveTo(-0.4,75,1000);
         //center
         if (position.equals("Center")) {
             moveTo(-.3, 1350, 4000);
@@ -166,8 +195,8 @@ public class TensorFlowMainAuto extends MyOpModeNEW
         }
         tfod.shutdown();
 
-        telemetry.addData("Gold Position: ", position);
-        telemetry.update();
+//        telemetry.addData("Gold Position: ", position);
+//        telemetry.update();
     }
 
     private void initVuforia() {

@@ -121,12 +121,12 @@ public class RealTeleop extends MyOpModeNEW {
 
             if (gamepad1.dpad_down)
             {
-                mineralBlocker.setPosition(0.2);
+                mineralBlocker.setPosition(0.3);
             }
 
             if(gamepad1.dpad_up)
             {
-                mineralBlocker.setPosition(0.6);
+                mineralBlocker.setPosition(0.9);
             }
 
 //            if (gamepad1.b) {
@@ -148,10 +148,10 @@ public class RealTeleop extends MyOpModeNEW {
                 motorFR.setPower(-gamepad1.right_stick_x);
                 motorBR.setPower(-gamepad1.right_stick_x);
             } else {
-                motorFL.setPower(0);
-                motorBL.setPower(0);
-                motorFR.setPower(0);
-                motorBR.setPower(0);
+                motorFL.setPower(0.0);
+                motorBL.setPower(0.0);
+                motorFR.setPower(0.0);
+                motorBR.setPower(0.0);
             }
 
             if (gamepad1.left_trigger > 0.05 ){
@@ -159,15 +159,15 @@ public class RealTeleop extends MyOpModeNEW {
             } else if (gamepad1.right_trigger > 0.05){
                 motorBaseExtend.setPower(-gamepad1.right_trigger);
             } else {
-                motorBaseExtend.setPower(0);
+                motorBaseExtend.setPower(0.0);
             }
 
             if (gamepad1.left_bumper)
-                manip.setPower(1);
+                manip.setPower(1.0);
             else if (gamepad1.right_bumper)
-                manip.setPower(-1);
+                manip.setPower(-1.0);
             else
-                manip.setPower(0);
+                manip.setPower(0.0);
 
 //            if (gamepad1.dpad_up) {
 //                latch.setPosition(0.75);
@@ -182,8 +182,8 @@ public class RealTeleop extends MyOpModeNEW {
                 motorArmLeft.setPower(gamepad2.left_stick_y);
                 motorArmRight.setPower(-gamepad2.left_stick_y);
             }else{
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
+                motorArmLeft.setPower(0.0);
+                motorArmRight.setPower(0.0);
             }
 
             if (gamepad2.a) {

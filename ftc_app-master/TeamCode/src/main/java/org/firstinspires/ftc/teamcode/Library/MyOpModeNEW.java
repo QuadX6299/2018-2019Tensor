@@ -165,7 +165,7 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         leftBoxRotate = hardwareMap.servo.get("leftBoxRotate");
         rightBoxRotate = hardwareMap.servo.get("rightBoxRotate");
 
-        //mineralBlocker = hardwareMap.servo.get("mineralBlocker");
+        mineralBlocker = hardwareMap.servo.get("mineralBlocker");
 
 //        leftBox = hardwareMap.servo.get("leftBox");
         rightBox = hardwareMap.servo.get("rightBox");
@@ -174,7 +174,7 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         markerDeploy = hardwareMap.servo.get("markerDeploy");
         latch = hardwareMap.servo.get("latch");
 
-        //manip = hardwareMap.dcMotor.get("manip");
+        manip = hardwareMap.dcMotor.get("manip");
 
         motorArmLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorArmRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);;
