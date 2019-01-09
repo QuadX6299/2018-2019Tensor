@@ -84,8 +84,38 @@ public class TensorFlowMainAuto extends MyOpModeNEW
 
         tfod.activate();
 
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(250);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
 
-    while(time.milliseconds() < 4000) {
+        while(time.milliseconds()<2000) {
+            latch.setPosition(0.75);
+        }
+
+        Thread.sleep(1500);
+
+        //try the dehang method with encoders that is in the library
+        motorArmLeft.setPower(0.5);
+        motorArmRight.setPower(-0.5);
+        Thread.sleep(850);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+
+        Thread.sleep(1000);
+
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(1200);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+        moveTo(0.4,100);
+
+
+    while(time.milliseconds() < 13000) {
         if (tfod != null) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
@@ -126,36 +156,6 @@ public class TensorFlowMainAuto extends MyOpModeNEW
             }
         }
     }
-
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(250);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-        while(time.milliseconds()<2000) {
-            latch.setPosition(0.75);
-        }
-
-        Thread.sleep(1500);
-
-        //try the dehang method with encoders that is in the library
-        motorArmLeft.setPower(0.5);
-        motorArmRight.setPower(-0.5);
-        Thread.sleep(850);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-
-        Thread.sleep(1000);
-
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(850);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-        moveTo(0.4,100);
 
 
         //moveTo(-0.4,75,1000);
