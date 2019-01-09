@@ -32,20 +32,20 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-
 import org.firstinspires.ftc.teamcode.Library.MyOpModeNEW;
 
 import java.util.List;
 
 
-@Autonomous(name="TensorFlowMainAuto", group="DogeCV")
+@Autonomous(name="TFJustGround", group="DogeCV")
 
-public class TensorFlowMainAuto extends MyOpModeNEW
+public class TFJustGround extends MyOpModeNEW
 {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -82,45 +82,10 @@ public class TensorFlowMainAuto extends MyOpModeNEW
         latch.setPosition(0.25);
 
         waitForStart();
-
-
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(250);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-
-        latch.setPosition(1.0);
-
-
-        Thread.sleep(1500);
-
-        //try the dehang method with encoders that is in the library
-        motorArmLeft.setPower(0.5);
-        motorArmRight.setPower(-0.5);
-        Thread.sleep(850);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-
-        Thread.sleep(1000);
-
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(1000);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-        setMotors(0.4,0.4);
-        Thread.sleep(250);
-        stopMotors();
-
         gyroInit();
-
         tfod.activate();
 
-        while(time.milliseconds() < 15000) {
+        while(time.milliseconds() < 4000) {
         if (tfod != null) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
