@@ -77,14 +77,14 @@ public class DiagonalTeleop extends LinearOpMode {
             if (((Math.abs(Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y))) > .1) ||
                     Math.abs(Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4) > .1) {
                 double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
-                double robotAngle = Math.atan2(gamepad1.left_stick_y, -gamepad1.left_stick_x) - Math.PI / 4;
+                double theta = Math.atan2(gamepad1.left_stick_y, -gamepad1.left_stick_x) - Math.PI / 4;
                 double rightX = -gamepad1.right_stick_x;
 
                 //as per unit circle cos gives x, sin gives you y
-                double FL = r * Math.cos(robotAngle) + rightX;
-                double FR = r * Math.sin(robotAngle) - rightX;
-                double BL = r * Math.sin(robotAngle) + rightX;
-                double BR = r * Math.cos(robotAngle) - rightX;
+                double FL = r * Math.cos(theta) + rightX;
+                double FR = r * Math.sin(theta) - rightX;
+                double BL = r * Math.sin(theta) + rightX;
+                double BR = r * Math.cos(theta) - rightX;
 
                 //make sure you don't try and give power bigger than 1
                 if (((Math.abs(FL) > 1) || (Math.abs(BL) > 1)) || ((Math.abs(FR) > 1) || (Math.abs(BR) > 1))) {
