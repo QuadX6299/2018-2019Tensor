@@ -97,8 +97,8 @@ public class RealTeleop extends MyOpModeNEW {
 
             //collect
             if (gamepad1.b) {
-                rightBoxRotate.setPosition(.2);
-                leftBoxRotate.setPosition(.8);
+                rightBoxRotate.setPosition(.1);
+                leftBoxRotate.setPosition(.9);
             }
             //oscillate
             if (gamepad1.a) {
