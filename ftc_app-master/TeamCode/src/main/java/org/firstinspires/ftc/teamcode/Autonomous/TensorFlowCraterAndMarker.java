@@ -43,9 +43,9 @@ import org.firstinspires.ftc.teamcode.Library.MyOpModeNEW;
 import java.util.List;
 
 
-@Autonomous(name="TensorFlowCraterAuto", group="DogeCV")
+@Autonomous(name="TensorFlowCraterAndMarker", group="DogeCV")
 
-public class TensorFlowCraterAuto extends MyOpModeNEW
+public class TensorFlowCraterAndMarker extends MyOpModeNEW
 {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -87,9 +87,9 @@ public class TensorFlowCraterAuto extends MyOpModeNEW
         waitForStart();
 
 
-        motorArmLeft.setPower(-0.75);
-        motorArmRight.setPower(0.75);
-        Thread.sleep(200);
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(150);
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
@@ -102,7 +102,7 @@ public class TensorFlowCraterAuto extends MyOpModeNEW
         //try the dehang method with encoders that is in the library
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
-        Thread.sleep(950);
+        Thread.sleep(850);
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
@@ -177,6 +177,16 @@ public class TensorFlowCraterAuto extends MyOpModeNEW
         if (position.equals("Center")) {
             moveTo(-.3, 500, 4000);
             turnCorr(.4, -25, 2000);
+            moveTo(0.3,350,2000);
+            turnCorr(0.4,-90,4000);
+            moveTo(0.3, 1000,4000);
+            turnCorr(0.4,-20,4000);
+            moveTo(0.3, 1000,4000);
+            markerDeploy.setPosition(0.2);
+            Thread.sleep(1000);
+            markerDeploy.setPosition(.65);
+            moveTo(-0.5,1500,5000);
+
         } else if (position.equals("Left")) {
             //left
 

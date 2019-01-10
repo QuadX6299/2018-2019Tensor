@@ -192,6 +192,11 @@ public class RealTeleop extends MyOpModeNEW {
                 leftBoxRotate.setPosition(.5);
             }
 
+            if(gamepad2.right_bumper)
+            {
+                latch.setPosition(1.0);
+            }
+
 
 //            if (gamepad2.dpad_right)
 //            {
