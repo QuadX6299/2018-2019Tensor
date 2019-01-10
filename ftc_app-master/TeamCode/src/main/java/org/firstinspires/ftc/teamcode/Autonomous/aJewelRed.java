@@ -41,7 +41,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Library.MyOpMode;
 
-
+@Disabled
 @Autonomous(name="Jewel Red", group="Linear Opmode")
 
 public class aJewelRed extends MyOpMode {

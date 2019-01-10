@@ -32,20 +32,20 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-
 import org.firstinspires.ftc.teamcode.Library.MyOpModeNEW;
 
 import java.util.List;
 
 
-@Autonomous(name="TensorFlowMainAuto", group="DogeCV")
+@Autonomous(name="TensorFlowCraterAuto", group="DogeCV")
 
-public class TensorFlowMainAuto extends MyOpModeNEW
+public class TensorFlowCraterAuto extends MyOpModeNEW
 {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -175,37 +175,23 @@ public class TensorFlowMainAuto extends MyOpModeNEW
         //moveTo(-0.4,75,1000);
         //center
         if (position.equals("Center")) {
-            moveTo(-.3, 1350, 4000);
-            markerDeploy.setPosition(0.2);
-            Thread.sleep(1000);
-            markerDeploy.setPosition(.65);
-            turnCorr(.4, -45, 4000);
-            moveTo(.4, 1800);
-            markerDeploy.setPosition(0.0);
+            moveTo(-.3, 500, 4000);
+            turnCorr(.4, -25, 2000);
         } else if (position.equals("Left")) {
             //left
 
-            turnCorr(0.4, 45, 4000);
-            moveTo(-0.4, 500, 3000);
-            turnCorr(0.4, -30, 3000);
-            moveTo(-0.4, 775);
-            markerDeploy.setPosition(0.0);
-            Thread.sleep(1000);
-            markerDeploy.setPosition(.65);
-            turnCorr(0.4, -50, 3000);
-            moveTo(.4, 1800);
+            turnCorr(0.4,45,4000);
+            moveTo(-0.4,500,3000);
+            turnCorr(0.4,-30,3000);
+            moveTo(-0.4,100, 2000);
         } else if (position.equals("Right")) {
             //right
 
-            turnCorr(0.4, -45, 4000);
-            moveTo(-0.4, 500);
-            turnCorr(0.4, 30, 2000);
-            moveTo(-0.4, 800);
-            markerDeploy.setPosition(0.0);
-            Thread.sleep(1000);
-            markerDeploy.setPosition(.65);
-            turnCorr(0.4, -50, 1500);
-            moveTo(.4, 1900);
+            turnCorr(0.4, -45,4000);
+            moveTo(-0.4,500);
+            turnCorr(0.4,30,2000);
+            moveTo(-0.4,75);
+            turnCorr(.4, -25, 2000);
         }
         tfod.shutdown();
 
