@@ -115,6 +115,9 @@ public class TensorFlowMainAuto extends MyOpModeNEW
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
+        rightBoxRotate.setPosition(.345);
+        leftBoxRotate.setPosition(.655);
+
         setMotors(0.4, 0.4);
         Thread.sleep(750);
         stopMotors();

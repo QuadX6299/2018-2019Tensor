@@ -77,7 +77,7 @@ public class RealTeleop extends MyOpModeNEW {
         resetStartTime();
 
         //init servo
-        markerDeploy.setPosition(.6);
+        markerDeploy.setPosition(.4);
         latch.setPosition(0.0);
 
 
