@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -44,7 +45,7 @@ import java.util.List;
 
 
 @Autonomous(name="TensorFlowCraterAndMarker", group="DogeCV")
-
+@Disabled
 public class TensorFlowCraterAndMarker extends MyOpModeNEW
 {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";

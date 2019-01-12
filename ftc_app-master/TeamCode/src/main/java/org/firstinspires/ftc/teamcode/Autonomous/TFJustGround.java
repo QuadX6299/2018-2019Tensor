@@ -78,77 +78,94 @@ public class TFJustGround extends MyOpModeNEW
 //            telemetry.update();
 //        }
 
-        markerDeploy.setPosition(0.65);
+        markerDeploy.setPosition(0.45);
         latch.setPosition(0.25);
+        rightBoxRotate.setPosition(.345);
+        leftBoxRotate.setPosition(.655);
 
         waitForStart();
+        setMotors(0.4, 0.4);
+        Thread.sleep(750);
+        stopMotors();
+
         gyroInit();
+
+        setMotors(-0.4, -0.4);
+        Thread.sleep(100);
+        stopMotors();
+
+        turnCorr(0.4, -15, 3000);
+
+
         tfod.activate();
+        Thread.sleep(1000);
 
-        while(time.milliseconds() < 4000) {
-        if (tfod != null) {
-            // getUpdatedRecognitions() will return null if no new information is available since
-            // the last time that call was made.
-            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-            if (updatedRecognitions != null) {
-                telemetry.addData("# Object Detected", updatedRecognitions.size());
-                if (updatedRecognitions.size() == 2) {
-                    int goldMineralX = -1;
-                    int silverMineral1X = -1;
-                    int silverMineral2X = -1;
-                    for (Recognition recognition : updatedRecognitions) {
-                        if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
-                            Thread.sleep(750);
-                            goldMineralX = (int) recognition.getLeft();
-                        } else if (silverMineral1X == -1) {
-                            Thread.sleep(750);
-                            silverMineral1X = (int) recognition.getLeft();
-                        } else {
-                            Thread.sleep(750);
-                            silverMineral2X = (int) recognition.getLeft();
+        while (time.milliseconds() < 15000) {
+            if (tfod != null) {
+                // getUpdatedRecognitions() will return null if no new information is available since
+                // the last time that call was made.
+                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                if (updatedRecognitions != null) {
+                    telemetry.addData("# Object Detected", updatedRecognitions.size());
+                    if (updatedRecognitions.size() == 2) {
+                        int goldMineralX = -1;
+                        int silverMineral1X = -1;
+                        int silverMineral2X = -1;
+                        for (Recognition recognition : updatedRecognitions) {
+                            if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                                Thread.sleep(750);
+                                goldMineralX = (int) recognition.getLeft();
+                            } else if (silverMineral1X == -1) {
+                                Thread.sleep(750);
+                                silverMineral1X = (int) recognition.getLeft();
+                            } else {
+                                Thread.sleep(750);
+                                silverMineral2X = (int) recognition.getLeft();
+                            }
+                        }
+                        if (goldMineralX == -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+                            position = "Left";
+                            telemetry.addData("Gold Mineral Position", "Left");
+                        } else if (goldMineralX != 1 && silverMineral1X != -1) {
+                            if (goldMineralX > silverMineral1X) {
+                                position = "Right";
+                                telemetry.addData("Gold Mineral Position", "Right");
+                            } else {
+                                position = "Center";
+                                telemetry.addData("Gold Mineral Position", "Center");
+
+                            }
                         }
                     }
-                    if (goldMineralX == -1 && silverMineral1X != -1 && silverMineral2X != -1) {
-                        position = "Left";
-                        telemetry.addData("Gold Mineral Position", "Left");
-                    } else if (goldMineralX != 1 && silverMineral1X != -1) {
-                        if (goldMineralX > silverMineral1X) {
-                            position = "Right";
-                            telemetry.addData("Gold Mineral Position", "Right");
-                        } else {
-                            position = "Center";
-                            telemetry.addData("Gold Mineral Position", "Center");
-
-                        }
-                    }
+                    telemetry.update();
                 }
-                telemetry.update();
             }
         }
-    }
 
+
+        turnCorr(0.4, 0, 3000);
 
         //moveTo(-0.4,75,1000);
         //center
         if (position.equals("Center")) {
-            moveTo(-.3, 1350, 4000);
-            markerDeploy.setPosition(0.2);
+            moveTo(-.3, 850, 4000);
+            markerDeploy.setPosition(0.8);
             Thread.sleep(1000);
-            markerDeploy.setPosition(.65);
-            turnCorr(.4, 45, 4000);
+            markerDeploy.setPosition(.45);
+            turnCorr(.4, -50, 4000);
             moveTo(.4, 1800);
-            markerDeploy.setPosition(0.0);
+
         } else if (position.equals("Left")) {
             //left
 
             turnCorr(0.4, 45, 4000);
             moveTo(-0.4, 500, 3000);
             turnCorr(0.4, -30, 3000);
-            moveTo(-0.4, 775);
-            markerDeploy.setPosition(0.0);
+            moveTo(-0.4, 150);
+            markerDeploy.setPosition(0.8);
             Thread.sleep(1000);
-            markerDeploy.setPosition(.65);
-            turnCorr(0.4, 45, 3000);
+            markerDeploy.setPosition(.45);
+            turnCorr(0.4, -55, 3000);
             moveTo(.4, 1800);
         } else if (position.equals("Right")) {
             //right
@@ -156,17 +173,16 @@ public class TFJustGround extends MyOpModeNEW
             turnCorr(0.4, -45, 4000);
             moveTo(-0.4, 500);
             turnCorr(0.4, 30, 2000);
-            moveTo(-0.4, 800);
-            markerDeploy.setPosition(0.0);
+            moveTo(-0.4, 85);
+            Thread.sleep(600);
+            markerDeploy.setPosition(0.8);
             Thread.sleep(1000);
-            markerDeploy.setPosition(.65);
-            turnCorr(0.4, 50, 1500);
+            markerDeploy.setPosition(.45);
+            turnCorr(0.4, -55, 1500);
             moveTo(.4, 1900);
         }
-        tfod.shutdown();
 
-//        telemetry.addData("Gold Position: ", position);
-//        telemetry.update();
+        tfod.shutdown();
     }
 
     private void initVuforia() {

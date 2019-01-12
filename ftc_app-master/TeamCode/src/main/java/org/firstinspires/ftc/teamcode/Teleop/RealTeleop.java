@@ -197,6 +197,20 @@ public class RealTeleop extends MyOpModeNEW {
                 latch.setPosition(1.0);
             }
 
+            if (gamepad2.x) {
+                if (servoDelay.milliseconds() > 100) {
+                    markerDeploy.setPosition(markerDeploy.getPosition() + .045);
+                    servoDelay.reset();
+                }
+            }
+
+            if (gamepad2.b) {
+                if (servoDelay.milliseconds() > 100) {
+                    markerDeploy.setPosition(markerDeploy.getPosition() - .045);
+                    servoDelay.reset();
+                }
+            }
+
 
 //            if (gamepad2.dpad_right)
 //            {

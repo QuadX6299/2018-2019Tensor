@@ -78,7 +78,7 @@ public class TensorFlowCraterAuto extends MyOpModeNEW
 //            telemetry.update();
 //        }
 
-        markerDeploy.setPosition(0.65);
+        markerDeploy.setPosition(0.5);
         latch.setPosition(0.25);
 
         rightBoxRotate.setPosition(.345);
