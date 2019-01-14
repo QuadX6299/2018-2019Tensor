@@ -39,6 +39,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.Came
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.Library.MyOpModeNEW;
+import com.vuforia.CameraDevice;
 
 import java.util.List;
 
@@ -69,6 +70,7 @@ public class TFJustGround extends MyOpModeNEW
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
+        CameraDevice camera = CameraDevice.getInstance();
         ElapsedTime time = new ElapsedTime();
 
 //        while (!isStopRequested() && !imu.isGyroCalibrated()) {
@@ -96,7 +98,7 @@ public class TFJustGround extends MyOpModeNEW
 
         turnCorr(0.4, -15, 3000);
 
-
+        camera.setFlashTorchMode(true);
         tfod.activate();
         Thread.sleep(1000);
 
@@ -142,6 +144,8 @@ public class TFJustGround extends MyOpModeNEW
             }
         }
 
+        camera.setFlashTorchMode(true);
+        Thread.sleep(500);
 
         turnCorr(0.4, 0, 3000);
 
