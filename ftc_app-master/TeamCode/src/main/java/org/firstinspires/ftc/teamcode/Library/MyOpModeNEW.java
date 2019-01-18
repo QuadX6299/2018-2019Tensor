@@ -24,15 +24,21 @@ import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
+import java.util.List;
 import java.util.Locale;
 
 public abstract class MyOpModeNEW extends LinearOpMode {
 
     public static BNO055IMU imu;
-    public VuforiaLocalizer vuforia;
     public static final int MOVEMENT_DELAY = 300;
 
+    public String position = "Center";
 
     public static DcMotor motorBL;
     public static DcMotor motorBR;
@@ -72,6 +78,12 @@ public abstract class MyOpModeNEW extends LinearOpMode {
 
     private static final double encoderInch = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.14159265);
 
+    public static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
+    public static final String LABEL_GOLD_MINERAL = "Gold Mineral";
+    public static final String LABEL_SILVER_MINERAL = "Silver Mineral";
+    public static final String VUFORIA_KEY = "AXb/g5n/////AAAAGSUed2rh5Us1jESA1cUn5r5KDUqTfwO2woh7MxjiLKSUyDslqBAgwCi0Qmc6lVczErnF5TIw7vG5R4TJ2igvrDVp+dP+3i2o7UUCRRj/PtyVgb4ZfNrDzHE80/6TUHifpKu4QCM04eRWYZocWNWhuRfytVeWy6NSTWefM9xadqG8FFrFk3XnvqDvk/6ZAgerNBdq5SsJ90eDdoAhgYEee40WxasoUUM9YVMvkWOqZgHSuraV2IyIUjkW/u0O+EkFtTNRUWP+aZwn1qO1H4Lk07AJYe21eqioBLMdzY7A8YqR1TeQ//0WJg8SFdXjuGbF6uHykBe2FF5UeyaehA0iTqfPS+59FLm8y1TuUt57eImq";
+    public VuforiaLocalizer vuforia;
+    public TFObjectDetector tfod;
 
     public char column;
     public boolean align;
@@ -89,67 +101,64 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         return String.format(Locale.getDefault(), "%.1f", AngleUnit.DEGREES.normalize(degrees));
     }
 
-//    public void composeTelemetry() { //Method that holds a majority of sensor telemetry for testing.
-//        // At the beginning of each telemetry update, grab a bunch of data
-//        // from the IMU that we will then display in separate lines.
-//        telemetry.addAction(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Acquiring the angles is relatively expensive; we don't want
-//                // to do that in each of the three items that need that info, as that's
-//                // three times the necessary expense.
-//                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-////            gravity  = imu.getGravity();
-//            }
-//        });
-//        telemetry.addLine()
-//                .addData("Angle", new Func<String>() { //Position of the robots angle.
-//                    @Override
-//                    public String value() {
-//                        return formatAngle(angles.angleUnit, angles.firstAngle); //Control Robot Pivot
-//                    }
-//                });
-//        telemetry.addLine()
-//                .addData("Left", new Func<String>() { //Left Range Sensor Telemetry.
-//                    @Override
-//                    public String value() {
-//                        double localRange;
-//                        double sensor = 0;
-//                        localRange = rangeL.getDistance(DistanceUnit.INCH);
-//                        if (!Double.isNaN(localRange) && (localRange < 1000)) {
-//                            sensor = localRange;
-//                        }
-//                        return Double.toString(sensor);
-//                    }
-//                });
-//        telemetry.addLine()
-//                .addData("Right", new Func<String>() { //Right Range Sensor Telemetry.
-//                    @Override
-//                    public String value() {
-//                        double localRange;
-//                        double sensor = 0;
-//                        localRange = rangeR.getDistance(DistanceUnit.INCH);
-//                        if (!Double.isNaN(localRange) && (localRange < 1000)) {
-//                            sensor = localRange;
-//                        }
-//                        return Double.toString(sensor);
-//                    }
-//                });
-//
-//        telemetry.addLine()
-//                .addData("Front", new Func<String>() { //Front Range Sensor Telemetry.
-//                    @Override
-//                    public String value() {
-//                        double localRange;
-//                        double sensor = 0;
-//                        localRange = rangeF.getDistance(DistanceUnit.INCH);
-//                        if (!Double.isNaN(localRange) && (localRange < 1000)) {
-//                            sensor = localRange;
-//                        }
-//                        return Double.toString(sensor);
-//                    }
-//                });
-//    }
+    public void initTfod() {
+        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
+
+    public void initVuforia() {
+        /*
+         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+         */
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraDirection = CameraDirection.BACK;
+
+        //  Instantiate the Vuforia engine
+        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
+    }
+
+    public String sample() {
+        if (tfod != null) {
+            // getUpdatedRecognitions() will return null if no new information is available since
+            // the last time that call was made.
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            if (updatedRecognitions != null) {
+                telemetry.addData("# Object Detected", updatedRecognitions.size());
+                if (updatedRecognitions.size() == 2) {
+                    int goldMineralX = -1;
+                    int silverMineral1X = -1;
+                    int silverMineral2X = -1;
+                    for (Recognition recognition : updatedRecognitions) {
+                        if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                            goldMineralX = (int) recognition.getLeft();
+                        } else if (silverMineral1X == -1) {
+                            silverMineral1X = (int) recognition.getLeft();
+                        } else {
+                            silverMineral2X = (int) recognition.getLeft();
+                        }
+                    }
+                    if (goldMineralX == -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+                        position = "Left";
+                    } else if (goldMineralX != 1 && silverMineral1X != -1) {
+                        if (goldMineralX > silverMineral1X) {
+                            position = "Right";
+                        } else {
+                            position = "Center";
+                        }
+                    }
+                }
+            }
+        }
+        return position;
+    }
+
 
 
     public void hMap(HardwareMap type) { //Initialization of the Robot's hardware map in autonomous.
@@ -190,6 +199,7 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         gyroInit();
 
     }
+
     public void hwMapManip(HardwareMap type) {
         motorBL = hardwareMap.dcMotor.get("motorBL");
         motorBR = hardwareMap.dcMotor.get("motorBR");
@@ -205,7 +215,6 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         gyroInit();
     }
 
-
     public void gyroInit() {
         BNO055IMU.Parameters Gparameters = new BNO055IMU.Parameters();
         Gparameters.mode = BNO055IMU.SensorMode.IMU;
@@ -219,16 +228,11 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         imu.initialize(Gparameters);
     }
 
-
-
-
     public void delay(long milliseconds) throws InterruptedException { //Delays the code via a sleep time.
         if (milliseconds < 0)
             milliseconds = 0;
         Thread.sleep(milliseconds);
     }
-
-
 
     public void setMotors(double left, double right) { //Moves forward when both values are positive.
         if (!opModeIsActive())
@@ -269,7 +273,6 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         motorArmLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorArmRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);;
     }
-
 
     public void rangeMovePID(double inAway, ModernRoboticsI2cRangeSensor sensorVar) { //Moving forward/backwards using a Range Sensor.
         double sensor = sensorVar.getDistance(DistanceUnit.INCH);
@@ -511,42 +514,6 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         return turnPow;
     }
 
-//    public String WhiteOrYellow() {
-//        if ((jewelColor.red() > 190) && (jewelColor.green()>190) && (jewelColor.blue() >190 ))
-//        {
-//            return "White";
-//        }
-//        return "Yellow";
-//    }
-//
-//    public boolean isYellow(){
-//        if((jewelColor.red() < 190) && (jewelColor.green()<190) && (jewelColor.blue() < 190 )){
-//            return true;
-//        }
-//        return false;
-//
-//    }
-
-//    public void mineralHit() {
-//        //hits yellow mineral using color sensor
-//        jewelArm.setPosition(.55);
-//        jewelHand.setPosition(.4);
-//        sleep(500);
-//        jewelArm.setPosition(.1);
-//        sleep(850);
-//
-//        jewelArm.setPosition(.55);
-//        jewelHand.setPosition(.45);
-//        sleep(300);
-//        jewelHand.setPosition(.3);
-//        sleep(300);
-//    }
-
-    public void deployMarker(double pos){
-        //starting position:
-        markerDeploy.setPosition(pos);
-    }
-
 
     public int getEncoderAverageBase(){
         int encoderSum = Math.abs(motorBL.getCurrentPosition()) + Math.abs(motorBR.getCurrentPosition());
@@ -634,9 +601,6 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         arcTurn(pow, deg, stop, 6000);
     }
 
-
-
-
     public void setTurnAuto(double deg) {
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         double currPos = Double.parseDouble(formatAngle(angles.angleUnit, angles.firstAngle));
@@ -696,8 +660,6 @@ public abstract class MyOpModeNEW extends LinearOpMode {
     public void moveTo(double pow, double deg, double threshold, double red) throws InterruptedException {
         moveTo(pow, deg, threshold, red, 15000, true);
     }
-
-
 
     public void moveTo(double pow, double deg, double threshold, double red, int tim, boolean stop) throws InterruptedException {
 
