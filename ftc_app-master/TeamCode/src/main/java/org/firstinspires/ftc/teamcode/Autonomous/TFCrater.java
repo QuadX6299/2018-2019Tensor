@@ -56,8 +56,8 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "GroundUpdate", group = "Concept")
-public class GroundUpdate extends MyOpModeNEW {
+@Autonomous(name = "TFCrater", group = "Concept")
+public class TFCrater extends MyOpModeNEW {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -261,35 +261,22 @@ public class GroundUpdate extends MyOpModeNEW {
             //moveTo(-0.4,75,1000);
             //center
             if (target.equals("Center")) {
-                moveTo(-.3, 850, 4000);
-                markerDeploy.setPosition(0.8);
-                Thread.sleep(1000);
-                markerDeploy.setPosition(.2);
-                turnCorr(.4, -50, 4000);
-                moveTo(.4, 1800);
+                moveTo(-.3, 500, 4000);
+                turnCorr(.4, -25, 2000);
             } else if (target.equals("Left")) {
                 //left
-                turnCorr(0.4, 45, 4000);
-                moveTo(-0.4, 500, 3000);
-                turnCorr(0.4, -30, 3000);
-                moveTo(-0.4, 150);
-                markerDeploy.setPosition(0.8);
-                Thread.sleep(1000);
-                markerDeploy.setPosition(.2);
-                turnCorr(0.4, -55, 3000);
-                moveTo(.4, 1800);
+                turnCorr(0.4,45,4000);
+                moveTo(-0.4,500,3000);
+                turnCorr(0.4,-30,3000);
+                moveTo(-0.4,100, 2000);
             } else if (target.equals("Right")) {
-                //right
-                turnCorr(0.4, -45, 4000);
-                moveTo(-0.4, 500);
-                turnCorr(0.4, 30, 2000);
-                moveTo(-0.4, 15);
-                Thread.sleep(600);
-                markerDeploy.setPosition(0.8);
-                Thread.sleep(1000);
-                markerDeploy.setPosition(.2);
-                turnCorr(0.4, -55, 1500);
-                moveTo(.4, 1900);
+            //right
+
+                turnCorr(0.4, -45,4000);
+                moveTo(-0.4,500);
+                turnCorr(0.4,30,2000);
+                moveTo(-0.4,75);
+                turnCorr(.4, -25, 2000);
             }
 
         }
@@ -321,7 +308,7 @@ public class GroundUpdate extends MyOpModeNEW {
      */
     private void initTfod() {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-            "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);

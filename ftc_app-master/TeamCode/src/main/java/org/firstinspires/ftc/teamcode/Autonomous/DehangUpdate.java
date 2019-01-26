@@ -60,7 +60,7 @@ public class DehangUpdate extends MyOpModeNEW {
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
 
-    private static String target = "null";
+    private static String target = "Center";
 
     private static final String VUFORIA_KEY = "AfsLjeX/////AAABmUQCh0kvTE6ghhE9k6hRvhKDXeYFiILf2hzZdxqve5WufF/kXsVxFfdGWx4cv8N8R9XmndWbAIm3zTSNY6wS95DKDN89ZMaY9+ICrg9Yk5IhwKQJTYRL6hybkYAGiEsQVlgCoG9/CtDExYIo0ztEE4AITeq6OC9qejJcGZHNk3L+tke4VkKWHv2CSpamz77A2ul34WjTsuIjNrznEFS7UQLQCY/EKCTGuQnbrQn8P3xNSUauF4EzfX0npPRT1LE9KJEBsuYaZUH7erzUGxKS4uOD7G3DUSQv+V0WRaXiWYNWP5SvacaCuGsaA7rZeLp/AIYjPNY7eKUp37BOYYK89Vat6pt1fQ9D4A1g5YYEDK2m";
 
@@ -95,6 +95,8 @@ public class DehangUpdate extends MyOpModeNEW {
         latch.setPosition(0.25);
         rightBoxRotate.setPosition(.345);
         leftBoxRotate.setPosition(.655);
+        markerDeploy.setPosition(0.2);
+
 
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
@@ -293,7 +295,7 @@ public class DehangUpdate extends MyOpModeNEW {
                 moveTo(-.3, 850, 4000);
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1000);
-                markerDeploy.setPosition(.45);
+                markerDeploy.setPosition(.2);
                 turnCorr(.4, -50, 4000);
                 moveTo(.4, 1800);
             } else if (target.equals("Left")) {
@@ -304,7 +306,7 @@ public class DehangUpdate extends MyOpModeNEW {
                 moveTo(-0.4, 150);
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1000);
-                markerDeploy.setPosition(.45);
+                markerDeploy.setPosition(.2);
                 turnCorr(0.4, -55, 3000);
                 moveTo(.4, 1800);
             } else if (target.equals("Right")) {
@@ -312,15 +314,17 @@ public class DehangUpdate extends MyOpModeNEW {
                 turnCorr(0.4, -45, 4000);
                 moveTo(-0.4, 500);
                 turnCorr(0.4, 30, 2000);
-                moveTo(-0.4, 85);
+                moveTo(-0.4, 15);
+
                 Thread.sleep(600);
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1000);
-                markerDeploy.setPosition(.45);
+                markerDeploy.setPosition(.2);
                 turnCorr(0.4, -55, 1500);
                 moveTo(.4, 1900);
             }
-
+            telemetry.addData("Encoders:", getEncoderAverageBase());
+            telemetry.update();
         }
         tfod.shutdown();
     }
