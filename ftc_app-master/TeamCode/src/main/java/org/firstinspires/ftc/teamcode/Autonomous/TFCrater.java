@@ -96,12 +96,47 @@ public class TFCrater extends MyOpModeNEW {
         ElapsedTime time = new ElapsedTime();
 
         markerDeploy.setPosition(0.2);
+        latch.setPosition(0.25);
+        rightBoxRotate.setPosition(.345);
+        leftBoxRotate.setPosition(.655);
 
 
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
+
+
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(150);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+
+        latch.setPosition(0.65);
+
+
+        Thread.sleep(750);
+
+        //try the dehang method with encoders that is in the library
+        motorArmLeft.setPower(0.5);
+        motorArmRight.setPower(-0.5);
+        Thread.sleep(850);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+
+        Thread.sleep(500);
+
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(1000);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+        rightBoxRotate.setPosition(.345);
+        leftBoxRotate.setPosition(.655);
 
         setMotors(0.4, 0.4);
         Thread.sleep(750);
