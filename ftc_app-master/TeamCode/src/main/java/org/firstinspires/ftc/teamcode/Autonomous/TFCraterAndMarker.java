@@ -161,7 +161,9 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 tfod.activate();
             }
 
-            while (time.milliseconds() < 8000) {
+            Thread.sleep(1000);
+
+            while (time.milliseconds() < 11000) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -317,34 +319,35 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 moveTo(-0.4,300,3000);
 
                 moveTo(0.4,100);
-                turnCorr(.4, 90, 2000);
-                moveTo(-.4,200);
-                turnCorr(0.4,120,2000);
-                moveTo(-.4,450,3000);
+                turnCorr(.4, 114, 2000);
+                moveTo(-.4,800);
+
+                markerDeploy.setPosition(0.8);
+                Thread.sleep(1200);
+                markerDeploy.setPosition(.2);
+                moveTo(0.4,950, 5000);
 
 
             } else if (target.equals("Right")) {
             //right
 
                 turnCorr(0.4, -40,3000); // pee pee
-                moveTo(-0.3,450);
+                moveTo(-0.3,525);
 //                turnCorr(0.4,30,2000);
 //                moveTo(-0.4,75);
 //                return to origin
                 turnCorr(.4,0,1500);
-                moveTo(0.2, 100);
-                turnCorr(0.4,-45, 2000);
-                turnCorr(.4,-90,2000);
-                moveTo(0.4, 1300);
+                moveTo(0.2, 150);
+                turnCorr(0.4,90, 2000);
+                moveTo(-0.4, 1450);
 
-                turnCorr(0.4,45,3000);
-                moveTo(-0.4, 800);
-                turnCorr(.4,125,2000);
-                moveTo(-0.4,600);
+                turnCorr(.4,118,2000);
+
+                moveTo(-0.4,400);
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
-                moveTo(0.4,700, 5000);
+                moveTo(0.4,950, 5000);
 
             }
 
