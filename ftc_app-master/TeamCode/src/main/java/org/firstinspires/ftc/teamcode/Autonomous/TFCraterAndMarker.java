@@ -298,7 +298,13 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 turnCorr(.4, -25, 2000);
                 moveTo(0.3,250,4000);
                 turnCorr(0.4,90,4000);
+                moveTo(-0.4,825,4000);
+                turnCorr(0.4,117,4000);
                 moveTo(-0.4,500,4000);
+                markerDeploy.setPosition(0.8);
+                Thread.sleep(1000);
+                markerDeploy.setPosition(.2);
+                moveTo(0.4,500,4000);
             } else if (target.equals("Left")) {
                 //left
                 turnCorr(0.4,45,4000);
