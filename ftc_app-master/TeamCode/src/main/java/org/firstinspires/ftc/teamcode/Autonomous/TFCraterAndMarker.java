@@ -145,6 +145,12 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         setMotors(-0.4, -0.4);
         Thread.sleep(100);
         stopMotors();
+        motorArmLeft.setPower(0.5);
+
+        motorArmRight.setPower(-0.5);
+        Thread.sleep(200);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
 
         turnCorr(0.4, 14, 3000);
 
@@ -302,36 +308,43 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 turnCorr(0.4,117,4000);
                 moveTo(-0.4,500,4000);
                 markerDeploy.setPosition(0.8);
-                Thread.sleep(1000);
+                Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
-                moveTo(0.4,500,4000);
+                moveTo(0.4,650,5000);
             } else if (target.equals("Left")) {
                 //left
                 turnCorr(0.4,45,4000);
-                moveTo(-0.4,500,3000);
-                turnCorr(0.4,-30,3000);
-                moveTo(-0.4,100, 2000);
+                moveTo(-0.4,300,3000);
+
+                moveTo(0.4,100);
+                turnCorr(.4, 90, 2000);
+                moveTo(-.4,200);
+                turnCorr(0.4,120,2000);
+                moveTo(-.4,450,3000);
+
+
             } else if (target.equals("Right")) {
             //right
 
-                turnCorr(0.4, -40,3000);
-                moveTo(-0.4,400);
+                turnCorr(0.4, -40,3000); // pee pee
+                moveTo(-0.3,450);
 //                turnCorr(0.4,30,2000);
 //                moveTo(-0.4,75);
 //                return to origin
-                moveTo(0.4, 30);
-                turnCorr(0.4,-45, 3000);
-                moveTo(0.4, 750);
-                turnCorr(0.4, 0, 3000);
+                turnCorr(.4,0,1500);
+                moveTo(0.2, 100);
+                turnCorr(0.4,-45, 2000);
+                turnCorr(.4,-90,2000);
+                moveTo(0.4, 1300);
 
-                turnCorr(0.4,70,3000);
-                moveTo(-0.4, 650);
+                turnCorr(0.4,45,3000);
+                moveTo(-0.4, 800);
                 turnCorr(.4,125,2000);
                 moveTo(-0.4,600);
                 markerDeploy.setPosition(0.8);
-                Thread.sleep(1000);
+                Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
-                moveTo(0.4,700);
+                moveTo(0.4,700, 5000);
 
             }
 
