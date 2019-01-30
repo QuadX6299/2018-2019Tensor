@@ -105,36 +105,36 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         waitForStart();
 
 
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(150);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-
-        latch.setPosition(0.65);
-
-
-        Thread.sleep(750);
-
-        //try the dehang method with encoders that is in the library
-        motorArmLeft.setPower(0.5);
-        motorArmRight.setPower(-0.5);
-        Thread.sleep(850);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-
-        Thread.sleep(500);
-
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(1000);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-        rightBoxRotate.setPosition(.345);
-        leftBoxRotate.setPosition(.655);
+//        motorArmLeft.setPower(-0.5);
+//        motorArmRight.setPower(0.5);
+//        Thread.sleep(150);
+//        motorArmLeft.setPower(0);
+//        motorArmRight.setPower(0);
+//
+//
+//        latch.setPosition(0.65);
+//
+//
+//        Thread.sleep(750);
+//
+//        //try the dehang method with encoders that is in the library
+//        motorArmLeft.setPower(0.5);
+//        motorArmRight.setPower(-0.5);
+//        Thread.sleep(850);
+//        motorArmLeft.setPower(0);
+//        motorArmRight.setPower(0);
+//
+//
+//        Thread.sleep(500);
+//
+//        motorArmLeft.setPower(-0.5);
+//        motorArmRight.setPower(0.5);
+//        Thread.sleep(1000);
+//        motorArmLeft.setPower(0);
+//        motorArmRight.setPower(0);
+//
+//        rightBoxRotate.setPosition(.345);
+//        leftBoxRotate.setPosition(.655);
 
         setMotors(0.4, 0.4);
         Thread.sleep(750);
@@ -155,7 +155,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 tfod.activate();
             }
 
-            while (time.milliseconds() < 10000) {
+            while (time.milliseconds() < 8000) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -308,14 +308,24 @@ public class TFCraterAndMarker extends MyOpModeNEW {
             } else if (target.equals("Right")) {
             //right
 
-                turnCorr(0.4, -45,4000);
-                moveTo(-0.4,500);
-                turnCorr(0.4,30,2000);
-                moveTo(-0.4,75);
-                moveTo(0.4, 75);
-                turnCorr(0.4,-45, 4000);
-                moveTo(0.4, 500);
-                turnCorr(0.4, 0, 4000);
+                turnCorr(0.4, -40,3000);
+                moveTo(-0.4,400);
+//                turnCorr(0.4,30,2000);
+//                moveTo(-0.4,75);
+//                return to origin
+                moveTo(0.4, 30);
+                turnCorr(0.4,-45, 3000);
+                moveTo(0.4, 750);
+                turnCorr(0.4, 0, 3000);
+
+                turnCorr(0.4,70,3000);
+                moveTo(-0.4, 650);
+                turnCorr(.4,125,2000);
+                moveTo(-0.4,600);
+                markerDeploy.setPosition(0.8);
+                Thread.sleep(1000);
+                markerDeploy.setPosition(.2);
+                moveTo(0.4,700);
 
             }
 
