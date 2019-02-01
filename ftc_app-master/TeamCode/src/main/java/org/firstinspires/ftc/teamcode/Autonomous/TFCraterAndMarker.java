@@ -105,6 +105,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         waitForStart();
 
 //
+
         motorArmLeft.setPower(-0.5);
         motorArmRight.setPower(0.5);
         Thread.sleep(150);
@@ -135,7 +136,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
         rightBoxRotate.setPosition(.345);
         leftBoxRotate.setPosition(.655);
-
+t
         //
 
         setMotors(0.4, 0.4);
@@ -321,8 +322,10 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 moveTo(-0.4,250);
                 moveTo(0.4,250);
 
-                turnCorr(.4, 114, 4000);
-                moveTo(-.4,700);
+                turnCorr(.4, 90, 2000);
+                moveTo(-.4,400);
+                turnCorr(.4,117,3000);
+                moveTo(-.4,500);
 
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1200);
