@@ -95,7 +95,7 @@ public class GroundUpdate extends MyOpModeNEW {
         }
         ElapsedTime time = new ElapsedTime();
 
-        markerDeploy.setPosition(0.2);
+        markerDeploy.setPosition(0.25);
 
 
         /** Wait for the game to begin */

@@ -79,7 +79,7 @@ public class TFJustGround extends MyOpModeNEW {
 //            telemetry.update();
 //        }
 
-        markerDeploy.setPosition(0.8);
+        markerDeploy.setPosition(0.25);
         latch.setPosition(0.25);
         rightBoxRotate.setPosition(.345);
         leftBoxRotate.setPosition(.655);

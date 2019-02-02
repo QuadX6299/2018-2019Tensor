@@ -93,7 +93,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         }
         ElapsedTime time = new ElapsedTime();
 
-        markerDeploy.setPosition(0.2);
+        markerDeploy.setPosition(0.25);
         latch.setPosition(0.25);
         rightBoxRotate.setPosition(.345);
         leftBoxRotate.setPosition(.655);
@@ -134,9 +134,9 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-        rightBoxRotate.setPosition(.345);
-        leftBoxRotate.setPosition(.655);
-t
+//        rightBoxRotate.setPosition(.345);
+//        leftBoxRotate.setPosition(.655);
+
         //
 
         setMotors(0.4, 0.4);
@@ -155,8 +155,10 @@ t
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-        turnCorr(0.4, 14, 3000);
+        turnCorr(0.4, 17, 3000);
 
+
+//        Thread.sleep(2500);
 
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
@@ -164,9 +166,8 @@ t
                 tfod.activate();
             }
 
-            Thread.sleep(1000);
 
-            while (time.milliseconds() < 11000) {
+            while (time.milliseconds() < 13000 && opModeIsActive()) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -186,9 +187,9 @@ t
                         }
 
                         ArrayList<Integer> removedInts = new ArrayList<>();
-                        for (int i = 0; i < updatedRecognitions.size(); i++) {
+                        for (int i = 0; i < updatedRecognitions.size() && opModeIsActive(); i++) {
                             Recognition rec = updatedRecognitions.get(i);
-                            for (int j = 0; j < updatedRecognitions.size(); j++) {
+                            for (int j = 0; j < updatedRecognitions.size() && opModeIsActive(); j++) {
                                 Recognition rec2 = updatedRecognitions.get(j);
                                 if (Math.abs((rec.getLeft() + rec.getRight()) / 2 - (rec2.getLeft() + rec.getRight()) / 2) < 150) {
                                     if (rec.getConfidence() < rec2.getConfidence()) {
@@ -300,6 +301,8 @@ t
                 telemetry.addData("Target", target);
                 telemetry.update();
             }
+
+
             turnCorr(0.4, 0, 3000);
 
             //moveTo(-0.4,75,1000);
@@ -325,11 +328,12 @@ t
                 turnCorr(.4, 90, 2000);
                 moveTo(-.4,400);
                 turnCorr(.4,117,3000);
-                moveTo(-.4,500);
+                moveTo(-.4,400);
 
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
+                turnCorr(.4,120,2000);
                 moveTo(0.4,950, 5000);
 
 
@@ -348,10 +352,11 @@ t
 
                 turnCorr(.4,118,2000);
 
-                moveTo(-0.4,400);
+                moveTo(-0.4,300);
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
+                turnCorr(.4,120,2000);
                 moveTo(0.4,950, 5000);
 
             }

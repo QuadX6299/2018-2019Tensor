@@ -95,7 +95,7 @@ public class TFCrater extends MyOpModeNEW {
         }
         ElapsedTime time = new ElapsedTime();
 
-        markerDeploy.setPosition(0.2);
+        markerDeploy.setPosition(0.25);
         latch.setPosition(0.25);
         rightBoxRotate.setPosition(.345);
         leftBoxRotate.setPosition(.655);
@@ -135,8 +135,8 @@ public class TFCrater extends MyOpModeNEW {
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-        rightBoxRotate.setPosition(.345);
-        leftBoxRotate.setPosition(.655);
+//        rightBoxRotate.setPosition(.345);
+//        leftBoxRotate.setPosition(.655);
 
         setMotors(0.4, 0.4);
         Thread.sleep(750);
