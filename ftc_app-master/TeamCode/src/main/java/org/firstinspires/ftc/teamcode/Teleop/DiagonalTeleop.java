@@ -95,10 +95,10 @@ public class DiagonalTeleop extends LinearOpMode {
                 }
 
                 //@TODO MAY HAVE TO SWITCH NEGATIVE SIGNS IF ROBOT MOVES IN WRONG DIRECTION
-                motorFL.setPower(-FL);
-                motorFR.setPower(FR);
-                motorBL.setPower(-BL);
-                motorBR.setPower(BR);
+                motorFL.setPower(FL);
+                motorFR.setPower(-FR);
+                motorBL.setPower(BL);
+                motorBR.setPower(-BR);
             } else {
                 motorFL.setPower(0);
                 motorFR.setPower(0);

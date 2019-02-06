@@ -10,28 +10,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.Func;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-
-import java.util.List;
 import java.util.Locale;
 
 public abstract class MyOpModeNEW extends LinearOpMode {
@@ -103,8 +90,43 @@ public abstract class MyOpModeNEW extends LinearOpMode {
     }
 
 
+    public double turnAbsolute(double deg, double tolerance) {
+        //Create a PID controller at the start of the movement.
+        //If sensor isn't in the desired angle, run.
 
+        double curAng = getGyroYaw();
+        PID pid = new PID();
 
+        if (Math.abs(getGyroYaw() - deg) > tolerance) {
+
+            //Finding how far away we are from the target position.
+            double error = deg - curAng;
+            double errorMove = Math.abs(deg - curAng);
+            if (error > 180) {
+                error = error - 360;
+            } else if (error < -180) {
+                error = error + 360;
+            }
+
+            //Using the error to calculate our power.
+            double pow = Math.abs(pid.update(Math.abs(error)));
+            //The minimum power required to turn the robot.
+            if (pow < .14) pow = .14;
+
+            //The following code allows us to turn in the direction we need, and if we cross the axis
+            //at which 180 degrees becomes -180, our robot can turn back in the direction which is closest
+            //to the position we wish to be at (We won't make a full rotation to get to -175, if we hit 180).
+            if (curAng < deg) {
+                if (errorMove < 180) return -pow; //Turns left
+                if (errorMove > 180) return pow;  //Turns right if we go past the pos/neg mark.
+
+            } else if (curAng > deg) {
+                if (errorMove < 180) return pow;  //Turns right
+                if (errorMove > 180) return -pow; //Turns left if we go past the pos/neg mark.
+            }
+        }
+        return 0;
+    }
 
     public void hMap(HardwareMap type) { //Initialization of the Robot's hardware map in autonomous.
         motorBL = hardwareMap.dcMotor.get("motorBL");
