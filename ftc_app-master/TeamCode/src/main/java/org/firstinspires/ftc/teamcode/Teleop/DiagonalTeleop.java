@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode.Teleop;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.Range;
 
 
 /**
@@ -94,7 +95,6 @@ public class DiagonalTeleop extends LinearOpMode {
                     BR /= Math.max(Math.max(Math.abs(FL), Math.abs(FR)), Math.max(Math.abs(BL), Math.abs(BR)));
                 }
 
-                //@TODO MAY HAVE TO SWITCH NEGATIVE SIGNS IF ROBOT MOVES IN WRONG DIRECTION
                 motorFL.setPower(FL);
                 motorFR.setPower(-FR);
                 motorBL.setPower(BL);
