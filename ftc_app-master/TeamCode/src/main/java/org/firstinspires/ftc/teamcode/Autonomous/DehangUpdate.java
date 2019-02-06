@@ -95,7 +95,7 @@ public class DehangUpdate extends MyOpModeNEW {
         latch.setPosition(0.25);
         rightBoxRotate.setPosition(.345);
         leftBoxRotate.setPosition(.655);
-        markerDeploy.setPosition(0.2);
+        markerDeploy.setPosition(0.25);
 
 
         /** Wait for the game to begin */
@@ -131,11 +131,11 @@ public class DehangUpdate extends MyOpModeNEW {
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-        rightBoxRotate.setPosition(.345);
-        leftBoxRotate.setPosition(.655);
+//        rightBoxRotate.setPosition(.345);
+//        leftBoxRotate.setPosition(.655);
 
         setMotors(0.4, 0.4);
-        Thread.sleep(750);;
+        Thread.sleep(750);
         stopMotors();
 
         gyroInit();
@@ -147,13 +147,14 @@ public class DehangUpdate extends MyOpModeNEW {
         turnCorr(0.4, 14, 3000);
 
 
+        time.reset();
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
             if (tfod != null) {
                 tfod.activate();
             }
 
-            while (time.milliseconds() < 10000) {
+            while (time.milliseconds() < 5000 && opModeIsActive()) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
