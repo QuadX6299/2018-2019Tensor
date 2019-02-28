@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -56,6 +57,7 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
+@Disabled
 @Autonomous(name = "TFCrater", group = "Concept")
 public class TFCrater extends MyOpModeNEW {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
@@ -135,8 +137,14 @@ public class TFCrater extends MyOpModeNEW {
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-//        rightBoxRotate.setPosition(.345);
-//        leftBoxRotate.setPosition(.655);
+        rightBoxRotate.setPosition(.345);
+        leftBoxRotate.setPosition(.655);
+
+        setMotors(-.4, -.4);
+        Thread.sleep(250);
+        stopMotors();
+
+
 
         setMotors(0.4, 0.4);
         Thread.sleep(750);

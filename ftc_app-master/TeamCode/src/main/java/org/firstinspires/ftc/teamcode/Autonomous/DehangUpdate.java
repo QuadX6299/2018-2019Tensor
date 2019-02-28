@@ -54,7 +54,7 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "DehangUpdate", group = "Concept")
+@Autonomous(name = "DepotAndMarker", group = "Concept")
 public class DehangUpdate extends MyOpModeNEW {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -122,6 +122,12 @@ public class DehangUpdate extends MyOpModeNEW {
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
+        rightBoxRotate.setPosition(.345);
+        leftBoxRotate.setPosition(.655);
+
+        setMotors(-.4, -.4);
+        Thread.sleep(250);
+        stopMotors();
 
         Thread.sleep(500);
 
@@ -131,8 +137,7 @@ public class DehangUpdate extends MyOpModeNEW {
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-//        rightBoxRotate.setPosition(.345);
-//        leftBoxRotate.setPosition(.655);
+
 
         setMotors(0.4, 0.4);
         Thread.sleep(750);
