@@ -135,6 +135,8 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
         Thread.sleep(500);
 
+        markerDeploy.setPosition(.35);
+
         motorArmLeft.setPower(-0.5);
         motorArmRight.setPower(0.5);
         Thread.sleep(1000);
@@ -146,7 +148,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
-        Thread.sleep(200);
+        Thread.sleep(125);
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
@@ -316,32 +318,32 @@ public class TFCraterAndMarker extends MyOpModeNEW {
             if (target.equals("Center")) {
                 moveTo(-.3, 500, 4000);
                 turnCorr(.4, -25, 2000);
-                moveTo(0.3,200,2500);
+                moveTo(0.3,150,2500);
                 turnCorr(0.4,90,4000);
                 moveTo(-0.4,825,4000);
-                turnCorr(0.4,120,4000);
-                moveTo(-0.4,500,4000);
+                turnCorr(0.4,128,4000);
+                moveTo(-0.4,350,4000);
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
                 turnCorr(.4,135,2000);
-                moveTo(0.4,750,5000);
+                moveTo(0.4,1000,5000);
             } else if (target.equals("Left")) {
                 //left
                 turnCorr(0.4,45,4000);
                 moveTo(-0.4,250);
-                moveTo(0.4,50);
+                moveTo(0.4,215);
 
                 turnCorr(.4, 90, 2000);
-                moveTo(-.4,250);
-                turnCorr(.4,126,3000);
+                moveTo(-.4,200);
+                turnCorr(.4,133,3000);
                 moveTo(-.4,400);
 
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
-                turnCorr(.4,135,2000);
-                moveTo(0.4,950, 5000);
+
+                moveTo(0.4,950);
 
 
             } else if (target.equals("Right")) {
@@ -353,17 +355,17 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 //                moveTo(-0.4,75);
 //                return to origin
                 turnCorr(.4,0,1500);
-                moveTo(0.2, 150);
+                moveTo(0.2, 100);
                 turnCorr(0.4,90, 2000);
                 moveTo(-0.4, 1450);
 
                 turnCorr(.4,118,2000);
 
-                moveTo(-0.4,300);
+                moveTo(-0.4,325);
                 markerDeploy.setPosition(0.8);
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
-                turnCorr(.4,132,4000);
+                turnCorr(.4,133,4000);
                 moveTo(0.4,950, 5000);
 
             }
