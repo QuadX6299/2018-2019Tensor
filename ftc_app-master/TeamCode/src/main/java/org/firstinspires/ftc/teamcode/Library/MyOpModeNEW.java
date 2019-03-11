@@ -338,6 +338,9 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         stopMotors();
     }
 
+
+
+
     public void turnCorrIntegral(double pow, double deg, int timer) throws InterruptedException { //Turns to a desired angle using the IMU.
         if (!opModeIsActive()) //if the OpMode is not active, don't run.
             return;
@@ -556,6 +559,9 @@ public abstract class MyOpModeNEW extends LinearOpMode {
 
 
 
+
+
+
     public void resetGyro() {
         turn = imu.getAngularOrientation().firstAngle;
     }
@@ -580,22 +586,28 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         }
     }
 
-    public void extendRobot (int deg, double power, int tim) {
+
+
+    public void extendRobotTime(double power, int tim)
+    {
         ElapsedTime time = new ElapsedTime();
         time.reset();
 
-        while (opModeIsActive()) {
-
-            if (deg > getEncoderAvgExtend() && time.milliseconds() < tim) {
-                motorArmRight.setPower(power);
-                motorArmLeft.setPower(power);
-            } else if (Math.abs(deg) > getEncoderAvgExtend() && time.milliseconds() < tim) {
-                motorArmRight.setPower(-power);
-                motorArmLeft.setPower(-power);
-            }
+        while (opModeIsActive() && time.milliseconds() < tim)
+        {
+            motorBaseExtend.setPower(power);
         }
+    }
 
+    public void extendRobotEncoder(double power, int deg, int tim)
+    {
+        ElapsedTime time = new ElapsedTime();
+        time.reset();
 
+        while (opModeIsActive() && getEncoderAverageBase() > 1 && time.milliseconds() < tim)
+        {
+            motorBaseExtend.setPower(power);
+        }
     }
 
 
