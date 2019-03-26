@@ -175,7 +175,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
             }
 
 
-            while (time.milliseconds() < 4000 && opModeIsActive()) {
+            while (time.milliseconds() < 1500 && opModeIsActive()) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -329,6 +329,9 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 turnCorr(.4,135,2000);
                 moveTo(0.4,1000,5000);
 
+                //UNFOLD HERE______________________________________________
+
+
             } else if (target.equals("Left")) {
                 //left
                 turnCorr(0.4,45,4000);
@@ -345,6 +348,8 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 markerDeploy.setPosition(.2);
 
                 moveTo(0.4,950);
+
+                //UNFOLD HERE______________________________________________
 
 
             } else if (target.equals("Right")) {
@@ -368,6 +373,8 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 markerDeploy.setPosition(.2);
                 turnCorr(.4,133,4000);
                 moveTo(0.4,950, 5000);
+
+                //UNFOLD HERE______________________________________________
 
 
             }

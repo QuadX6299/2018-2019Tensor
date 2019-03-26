@@ -96,8 +96,8 @@ public class UnfoldTest extends MyOpModeNEW {
         telemetry.update();
         waitForStart();
 
-         rightBoxRotate.setPosition(0.15);
-         leftBoxRotate.setPosition(0.85);
+        rightBoxRotate.setPosition(0.15);
+        leftBoxRotate.setPosition(0.85);
 
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
@@ -106,7 +106,7 @@ public class UnfoldTest extends MyOpModeNEW {
         motorArmRight.setPower(0);
 
 
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
 
        // moveTo(0.4,20);
@@ -118,21 +118,21 @@ public class UnfoldTest extends MyOpModeNEW {
         rightBoxRotate.setPosition(.345);
         leftBoxRotate.setPosition(.655);
 
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
-        Thread.sleep(1000);
+        Thread.sleep(1050);
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-        Thread.sleep(1000);
+        Thread.sleep(250);
 
-        moveTo(-0.5,175,750);
+        moveTo(-0.5,350,750);
 
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
-        Thread.sleep(50);
+        Thread.sleep(475);
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
         //servo init position
