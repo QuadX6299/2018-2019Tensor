@@ -261,7 +261,7 @@ public class RealTeleop extends MyOpModeNEW {
 
             telemetry.addData("allSlow: ", allSlow);
             telemetry.addData("turnSlow: ", turnSlow);
-//            telemetry.addData("ArmEncoder: ", motorArmLeft.getCurrentPosition());
+            telemetry.addData("ArmEncoder: ", getEncoderAverageArm());
 //            telemetry.addData("leftBox: ", leftBox.getPosition());
 //            telemetry.addData("rightBox: ", rightBox.getPosition());
 //            telemetry.addData("leftBoxRotate: ", leftBoxRotate.getPosition());

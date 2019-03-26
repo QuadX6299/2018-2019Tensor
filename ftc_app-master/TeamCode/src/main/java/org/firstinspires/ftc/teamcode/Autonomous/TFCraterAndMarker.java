@@ -328,7 +328,6 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 markerDeploy.setPosition(.2);
                 turnCorr(.4,135,2000);
                 moveTo(0.4,1000,5000);
-                extendRobotTime(0.75, 1000);
 
             } else if (target.equals("Left")) {
                 //left
@@ -347,7 +346,6 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 moveTo(0.4,950);
 
-                extendRobotTime(0.75, 1000);
 
             } else if (target.equals("Right")) {
             //right
@@ -371,7 +369,6 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 turnCorr(.4,133,4000);
                 moveTo(0.4,950, 5000);
 
-                extendRobotTime(0.75, 1000);
 
             }
 
