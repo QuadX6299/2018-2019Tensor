@@ -330,7 +330,45 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 moveTo(0.4,1000,5000);
 
                 //UNFOLD HERE______________________________________________
+                rightBoxRotate.setPosition(0.15);
+                leftBoxRotate.setPosition(0.85);
 
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1100);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+
+                Thread.sleep(100);
+
+
+                // moveTo(0.4,20);
+
+
+                // Thread.sleep(1000);
+
+
+                rightBoxRotate.setPosition(.345);
+                leftBoxRotate.setPosition(.655);
+
+                Thread.sleep(100);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1050);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(250);
+
+                moveTo(-0.5,350,750);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(475);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
 
             } else if (target.equals("Left")) {
                 //left
@@ -350,7 +388,45 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 moveTo(0.4,950);
 
                 //UNFOLD HERE______________________________________________
+                rightBoxRotate.setPosition(0.15);
+                leftBoxRotate.setPosition(0.85);
 
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1100);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+
+                Thread.sleep(100);
+
+
+                // moveTo(0.4,20);
+
+
+                // Thread.sleep(1000);
+
+
+                rightBoxRotate.setPosition(.345);
+                leftBoxRotate.setPosition(.655);
+
+                Thread.sleep(100);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1050);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(250);
+
+                moveTo(-0.5,350,750);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(475);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
 
             } else if (target.equals("Right")) {
             //right
@@ -376,6 +452,45 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 //UNFOLD HERE______________________________________________
 
+                rightBoxRotate.setPosition(0.15);
+                leftBoxRotate.setPosition(0.85);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1100);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+
+                Thread.sleep(100);
+
+
+                // moveTo(0.4,20);
+
+
+                // Thread.sleep(1000);
+
+
+                rightBoxRotate.setPosition(.345);
+                leftBoxRotate.setPosition(.655);
+
+                Thread.sleep(100);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1050);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(250);
+
+                moveTo(-0.5,350,750);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(475);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
 
             }
 
