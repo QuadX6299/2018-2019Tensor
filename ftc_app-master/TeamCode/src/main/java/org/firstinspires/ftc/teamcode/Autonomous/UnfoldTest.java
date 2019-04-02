@@ -137,8 +137,18 @@ public class UnfoldTest extends MyOpModeNEW {
         motorArmRight.setPower(0);
         //servo init position
 
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        Thread.sleep(200);
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
 
-//
+        moveTo(0.4,200,750);
+
+        rightBoxRotate.setPosition(0.09);
+        leftBoxRotate.setPosition(0.91);
+
+        manip.setPower(1);
     }
 }
 
