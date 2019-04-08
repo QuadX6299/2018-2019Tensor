@@ -54,8 +54,8 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "TFCraterAndMarker", group = "Concept")
-public class TFCraterAndMarker extends MyOpModeNEW {
+@Autonomous(name = "CrashTest")
+public class CrashTest extends MyOpModeNEW {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -93,10 +93,6 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         }
         ElapsedTime time = new ElapsedTime();
 
-        markerDeploy.setPosition(0.25);
-        latch.setPosition(0.25);
-        rightBoxRotate.setPosition(.345);
-        leftBoxRotate.setPosition(.655);
 
 
         /** Wait for the game to begin */
@@ -104,68 +100,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         telemetry.update();
         waitForStart();
 
-//
-
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(150);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-
-        latch.setPosition(0.65);
-
-
-        Thread.sleep(750);
-
-        //try the dehang method with encoders that is in the library
-        motorArmLeft.setPower(0.5);
-        motorArmRight.setPower(-0.5);
-        Thread.sleep(850);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-        rightBoxRotate.setPosition(.345);
-        leftBoxRotate.setPosition(.655);
-
-        setMotors(-.4, -.4);
-        Thread.sleep(250);
-        stopMotors();
-
-
-        Thread.sleep(500);
-
-        markerDeploy.setPosition(.35);
-
-        motorArmLeft.setPower(-0.5);
-        motorArmRight.setPower(0.5);
-        Thread.sleep(1000);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
-
-        //
-
-        motorArmLeft.setPower(0.5);
-        motorArmRight.setPower(-0.5);
-        Thread.sleep(125);
-        motorArmLeft.setPower(0);
-        motorArmRight.setPower(0);
-
         setMotors(0.4, 0.4);
-        Thread.sleep(750);
-        stopMotors();
-
-        gyroInit();
-
-        setMotors(-0.4, -0.4);
-        Thread.sleep(100);
-        stopMotors();
-
-        turnCorr(0.4, 17, 3000);
-
-
-//        Thread.sleep(2500);
 
         time.reset();
         if (opModeIsActive()) {
@@ -309,193 +244,10 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 telemetry.addData("Target", target);
                 telemetry.update();
             }
-
-
-            turnCorr(0.4, 0, 2500);
-
-            //moveTo(-0.4,75,1000);
-            //center
-            if (target.equals("Center")) {
-                moveTo(-.3, 500, 4000);
-                turnCorr(.4, -25, 1500);
-                moveTo(0.3,150,2500);
-                turnCorr(0.4,90,2750);
-                moveTo(-0.4,825,4000);
-                turnCorr(0.4,128,2000);
-                moveTo(-0.4,350,4000);
-                markerDeploy.setPosition(0.8);
-                Thread.sleep(1200);
-                markerDeploy.setPosition(.2);
-                turnCorr(.4,135,1500);
-                moveTo(0.4,1000,5000);
-
-                //UNFOLD HERE______________________________________________
-                rightBoxRotate.setPosition(0.15);
-                leftBoxRotate.setPosition(0.85);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(1100);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-
-                Thread.sleep(100);
-
-
-                // moveTo(0.4,20);
-
-
-                // Thread.sleep(1000);
-
-
-                rightBoxRotate.setPosition(.345);
-                leftBoxRotate.setPosition(.655);
-
-                Thread.sleep(100);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(1050);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-                Thread.sleep(250);
-
-                moveTo(-0.5,350,750);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(475);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-            } else if (target.equals("Left")) {
-                //left
-                turnCorr(0.4,45,2500);
-                moveTo(-0.4,250);
-                moveTo(0.4,215);
-
-                turnCorr(.4, 90, 1500);
-                moveTo(-.4,200);
-                turnCorr(.4,133,1750);
-                moveTo(-.4,400);
-
-                markerDeploy.setPosition(0.8);
-                Thread.sleep(1200);
-                markerDeploy.setPosition(.2);
-
-                moveTo(0.4,950);
-
-                //UNFOLD HERE______________________________________________
-                rightBoxRotate.setPosition(0.15);
-                leftBoxRotate.setPosition(0.85);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(1100);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-
-                Thread.sleep(100);
-
-
-                // moveTo(0.4,20);
-
-
-                // Thread.sleep(1000);
-
-
-                rightBoxRotate.setPosition(.345);
-                leftBoxRotate.setPosition(.655);
-
-                Thread.sleep(100);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(1050);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-                Thread.sleep(250);
-
-                moveTo(-0.5,350,750);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(475);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-            } else if (target.equals("Right")) {
-            //right
-
-                turnCorr(0.4, -40,2500); // pee pee
-                moveTo(-0.3,525);
-//                turnCorr(0.4,30,2000);
-//                moveTo(-0.4,75);
-//                return to origin
-                turnCorr(.4,0,1500);
-                moveTo(0.2, 100);
-                turnCorr(0.4,90, 2000);
-                moveTo(-0.4, 1450);
-
-                turnCorr(.4,118,1500);
-
-                moveTo(-0.4,325);
-                markerDeploy.setPosition(0.8);
-                Thread.sleep(1200);
-                markerDeploy.setPosition(.2);
-                turnCorr(.4,133,2000);
-                moveTo(0.4,950, 5000);
-
-                //UNFOLD HERE______________________________________________
-
-                rightBoxRotate.setPosition(0.15);
-                leftBoxRotate.setPosition(0.85);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(1100);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-
-                Thread.sleep(100);
-
-
-                // moveTo(0.4,20);
-
-
-                // Thread.sleep(1000);
-
-
-                rightBoxRotate.setPosition(.345);
-                leftBoxRotate.setPosition(.655);
-
-                Thread.sleep(100);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(1050);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-                Thread.sleep(250);
-
-                moveTo(-0.5,350,750);
-
-                motorArmLeft.setPower(0.5);
-                motorArmRight.setPower(-0.5);
-                Thread.sleep(475);
-                motorArmLeft.setPower(0);
-                motorArmRight.setPower(0);
-
-            }
-
+            Thread.sleep(5000);
+            stopMotors();
         }
-//        tfod.shutdown();
+        tfod.shutdown();
     }
 
 
