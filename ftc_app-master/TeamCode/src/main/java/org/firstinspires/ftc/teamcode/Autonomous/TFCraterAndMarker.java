@@ -356,17 +356,17 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(1050);
+                Thread.sleep(900);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
                 Thread.sleep(250);
 
-                moveTo(-0.5,350,750);
+                moveTo(-0.5,175);
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(475);
+                Thread.sleep(600);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
@@ -414,17 +414,17 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(1050);
+                Thread.sleep(900);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
                 Thread.sleep(250);
 
-                moveTo(-0.5,350,750);
+                moveTo(-0.5,175);
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(475);
+                Thread.sleep(600);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
@@ -478,17 +478,17 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(1050);
+                Thread.sleep(900);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
                 Thread.sleep(250);
 
-                moveTo(-0.5,350,750);
+                moveTo(-0.5,175);
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(475);
+                Thread.sleep(600);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
