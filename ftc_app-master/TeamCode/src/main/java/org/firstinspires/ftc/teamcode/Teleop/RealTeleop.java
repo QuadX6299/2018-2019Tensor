@@ -121,7 +121,7 @@ public class RealTeleop extends MyOpModeNEW {
 
             if (gamepad1.dpad_down)
             {
-                mineralBlocker.setPosition(0.3);
+                mineralBlocker.setPosition(0.45);
             }
 
             if(gamepad1.dpad_up)
