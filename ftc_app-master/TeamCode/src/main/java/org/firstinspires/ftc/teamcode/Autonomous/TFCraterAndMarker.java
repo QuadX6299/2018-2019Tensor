@@ -356,17 +356,17 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(900);
+                Thread.sleep(750);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
                 Thread.sleep(250);
 
-                moveTo(-0.5,175);
+                moveTo(-0.3,175);
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(600);
+                Thread.sleep(800);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 

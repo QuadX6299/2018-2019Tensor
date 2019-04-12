@@ -122,13 +122,13 @@ public class UnfoldTest extends MyOpModeNEW {
 
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
-        Thread.sleep(1050);
+        Thread.sleep(1150);
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
         Thread.sleep(250);
 
-        moveTo(-0.5,350,750);
+        moveTo(-0.5,150);
 
         motorArmLeft.setPower(0.5);
         motorArmRight.setPower(-0.5);
@@ -143,10 +143,10 @@ public class UnfoldTest extends MyOpModeNEW {
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
 
-        moveTo(0.4,200,750);
+        moveTo(0.4,200);
 
-        rightBoxRotate.setPosition(0.09);
-        leftBoxRotate.setPosition(0.91);
+        rightBoxRotate.setPosition(0.15);
+        leftBoxRotate.setPosition(0.85);
 
         manip.setPower(1);
     }
