@@ -448,7 +448,8 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
                 turnCorr(.4,133,2000);
-                moveTo(0.4,950, 5000);
+                moveTo(0.4,300);
+//                moveTo(0.4,950, 5000);
 
                 //UNFOLD HERE______________________________________________
 
@@ -478,19 +479,21 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(900);
+                Thread.sleep(1150);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
 
                 Thread.sleep(250);
 
-                moveTo(-0.5,175);
+                moveTo(-0.5,150);
 
                 motorArmLeft.setPower(0.5);
                 motorArmRight.setPower(-0.5);
-                Thread.sleep(600);
+                Thread.sleep(475);
                 motorArmLeft.setPower(0);
                 motorArmRight.setPower(0);
+
+                moveTo(.5, 200);
 
             }
 

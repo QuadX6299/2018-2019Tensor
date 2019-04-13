@@ -135,6 +135,7 @@ public class UnfoldTest extends MyOpModeNEW {
         Thread.sleep(475);
         motorArmLeft.setPower(0);
         motorArmRight.setPower(0);
+        //up
         //servo init position
 
         motorArmLeft.setPower(-0.5);
