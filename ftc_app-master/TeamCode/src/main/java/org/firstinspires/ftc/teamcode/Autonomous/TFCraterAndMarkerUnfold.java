@@ -54,8 +54,8 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "TFCraterAndMarker", group = "Concept")
-public class TFCraterAndMarker extends MyOpModeNEW {
+@Autonomous(name = "TFCraterAndMarkerUnfold", group = "Concept")
+public class TFCraterAndMarkerUnfold extends MyOpModeNEW {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -327,11 +327,77 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 Thread.sleep(1200);
                 markerDeploy.setPosition(.2);
                 turnCorr(.4,134,1500);
-                moveTo(0.4,300);
+                moveTo(0.4,50);
 //                moveTo(0.4,950, 5000);
 
                 Thread.sleep(250);
 
+                //UNFOLD HERE______________________________________________
+
+                rightBoxRotate.setPosition(0.15);
+                leftBoxRotate.setPosition(0.85);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1100);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+
+                Thread.sleep(100);
+
+
+                // moveTo(0.4,20);
+
+
+                // Thread.sleep(1000);
+
+
+                rightBoxRotate.setPosition(.345);
+                leftBoxRotate.setPosition(.655);
+
+                Thread.sleep(100);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1150);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(250);
+
+                setMotors(-0.4,-0.4);
+                Thread.sleep(250);
+                setMotors(0,0);
+
+                Thread.sleep(250);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(475);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+                //up
+                //servo init position
+                Thread.sleep(250);
+
+                motorArmLeft.setPower(-0.5);
+                motorArmRight.setPower(0.5);
+                Thread.sleep(200);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(100);
+
+                moveTo(0.4,200);
+
+//        Thread.sleep(100);
+
+//        rightBoxRotate.setPosition(0.15);
+//        leftBoxRotate.setPosition(0.85);
+
+                Thread.sleep(100);
+                manip.setPower(1);
 
             } else if (target.equals("Left")) {
                 //left
@@ -351,6 +417,72 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 moveTo(0.4,300);
 //                moveTo(0.4,950, 5000);
 
+                //UNFOLD HERE______________________________________________
+
+                rightBoxRotate.setPosition(0.15);
+                leftBoxRotate.setPosition(0.85);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1100);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+
+                Thread.sleep(100);
+
+
+                // moveTo(0.4,20);
+
+
+                // Thread.sleep(1000);
+
+
+                rightBoxRotate.setPosition(.345);
+                leftBoxRotate.setPosition(.655);
+
+                Thread.sleep(100);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1150);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(250);
+
+                setMotors(-0.4,-0.4);
+                Thread.sleep(250);
+                setMotors(0,0);
+
+                Thread.sleep(250);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(475);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+                //up
+                //servo init position
+                Thread.sleep(250);
+
+                motorArmLeft.setPower(-0.5);
+                motorArmRight.setPower(0.5);
+                Thread.sleep(200);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(100);
+
+                moveTo(0.4,200);
+
+//        Thread.sleep(100);
+
+//        rightBoxRotate.setPosition(0.15);
+//        leftBoxRotate.setPosition(0.85);
+
+                Thread.sleep(100);
+                manip.setPower(1);
 
             } else if (target.equals("Right")) {
             //right
@@ -375,7 +507,72 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 moveTo(0.4,300);
 //                moveTo(0.4,950, 5000);
 
+                //UNFOLD HERE______________________________________________
 
+                rightBoxRotate.setPosition(0.15);
+                leftBoxRotate.setPosition(0.85);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1100);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+
+                Thread.sleep(100);
+
+
+                // moveTo(0.4,20);
+
+
+                // Thread.sleep(1000);
+
+
+                rightBoxRotate.setPosition(.345);
+                leftBoxRotate.setPosition(.655);
+
+                Thread.sleep(100);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(1150);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(250);
+
+                setMotors(-0.4,-0.4);
+                Thread.sleep(250);
+                setMotors(0,0);
+
+                Thread.sleep(250);
+
+                motorArmLeft.setPower(0.5);
+                motorArmRight.setPower(-0.5);
+                Thread.sleep(475);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+                //up
+                //servo init position
+                Thread.sleep(250);
+
+                motorArmLeft.setPower(-0.5);
+                motorArmRight.setPower(0.5);
+                Thread.sleep(200);
+                motorArmLeft.setPower(0);
+                motorArmRight.setPower(0);
+
+                Thread.sleep(100);
+
+                moveTo(0.4,200);
+
+//        Thread.sleep(100);
+
+//        rightBoxRotate.setPosition(0.15);
+//        leftBoxRotate.setPosition(0.85);
+
+                Thread.sleep(100);
+                manip.setPower(1);
             }
 
         }
