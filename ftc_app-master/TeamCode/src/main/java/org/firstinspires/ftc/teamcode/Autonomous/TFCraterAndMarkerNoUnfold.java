@@ -54,8 +54,8 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "TFCraterAndMarker", group = "Concept")
-public class TFCraterAndMarker extends MyOpModeNEW {
+@Autonomous(name = "CraterAndMarkerNoUnfold", group = "Concept")
+public class TFCraterAndMarkerNoUnfold extends MyOpModeNEW {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -324,15 +324,15 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                moveEncoder(0.3, 300, 3000);
+                moveEncoder(0.3, 250, 3000);
 
                 Thread.sleep(250);
 
-                turnCorr(0.6,-87.5,2000);
+                turnCorr(0.6,-80,2000);
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6,1675,2000);
+                moveEncoder(0.6,900,2000);
 
                 Thread.sleep(250);
 
@@ -340,11 +340,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6,320,1500);
-
-                Thread.sleep(250);
-
-                unfold();
+                moveEncoder(0.6,600,1500);
 
                 Thread.sleep(250);
 
@@ -354,40 +350,12 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                motorArmLeft.setPower(-0.75);
-                motorArmRight.setPower(0.75);
-                Thread.sleep(2000);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
-                moveEncoder(-0.6, 100, 500);
-
-                turnCorr(0.6,-60,750);
+                turnCorr(.4,-39,2000);
 
                 Thread.sleep(250);
 
-                moveEncoder(-0.6, 100, 500);
+                moveEncoder(-0.6,2400,2000);
 
-                Thread.sleep(100);
-
-                turnCorr(0.6,-95,750);
-
-                moveEncoder(-0.6,1700,2000);
-
-                motorArmLeft.setPower(0.65);
-                motorArmRight.setPower(-0.65);
-                turnCorr(0.4,-180,1250);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
-
-
-
-//                turnCorr(.4,136.5,1500);
-//                moveTo(0.4,600);
-////                moveTo(0.4,950, 5000);
-//
-//                Thread.sleep(250);
 
 
             } else if (target.equals("Left")) {
@@ -396,11 +364,11 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                moveEncoder(-0.6,750,1500);
+                moveEncoder(-0.6,1000,1500);
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6, 150, 3000);
+                moveEncoder(0.6, 200, 3000);
 
                 Thread.sleep(250);
 
@@ -408,7 +376,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6,1675,2000);
+                moveEncoder(0.6,625,2000);
 
                 Thread.sleep(250);
 
@@ -416,11 +384,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6,320,1500);
-
-                Thread.sleep(250);
-
-                unfold();
+                moveEncoder(0.6,900,1500);
 
                 Thread.sleep(250);
 
@@ -430,47 +394,26 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                motorArmLeft.setPower(-0.75);
-                motorArmRight.setPower(0.75);
-                Thread.sleep(2000);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
-                moveEncoder(-0.6, 100, 500);
-
-                turnCorr(0.6,-60,750);
+                turnCorr(.4,-42,2000);
 
                 Thread.sleep(250);
 
-                moveEncoder(-0.6, 100, 500);
+                moveEncoder(-0.6,2500,2000);
 
-                Thread.sleep(100);
-
-                turnCorr(0.6,-96,750);
-
-                moveEncoder(-0.6,1700,2000);
-
-                motorArmLeft.setPower(0.65);
-                motorArmRight.setPower(-0.65);
-                turnCorr(0.4,-180,1250);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
 
 
             } else if (target.equals("Right")) {
             //right
 
-                moveEncoder(-0.6, 100,500);
-
-                turnCorr(0.6, -10,450);
+                turnCorr(0.4, -27,1500);
 
                 Thread.sleep(250);
 
-                moveEncoder(-0.6, 200, 1000);
+                moveEncoder(-0.6, 700, 3000);
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6, 300, 1000);
+                moveEncoder(0.6, 225, 3000);
 
                 Thread.sleep(250);
 
@@ -478,7 +421,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6,950,1000);
+                moveEncoder(0.6,1075,2000);
 
                 Thread.sleep(250);
 
@@ -486,11 +429,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
 
                 Thread.sleep(250);
 
-                moveEncoder(0.6,320,1500);
-
-                Thread.sleep(250);
-
-                unfold();
+                moveEncoder(0.6,500,1500);
 
                 Thread.sleep(250);
 
@@ -498,17 +437,14 @@ public class TFCraterAndMarker extends MyOpModeNEW {
                 Thread.sleep(1000);
                 manip.setPower(0);
 
+
                 Thread.sleep(250);
 
-                motorArmLeft.setPower(-0.75);
-                motorArmRight.setPower(0.75);
-                Thread.sleep(2000);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
+                turnCorr(.4,-41,2000);
 
-                turnCorr(0.6, -40,750);
+                Thread.sleep(250);
 
-                moveEncoder(-0.6, 750, 750);
+                moveEncoder(-0.6, 2000, 2000);
 
 
             }

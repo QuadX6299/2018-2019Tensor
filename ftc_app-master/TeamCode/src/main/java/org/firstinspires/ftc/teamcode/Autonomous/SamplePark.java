@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -54,8 +55,9 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "TFCraterAndMarker", group = "Concept")
-public class TFCraterAndMarker extends MyOpModeNEW {
+@Autonomous(name = "SamplePark", group = "Concept")
+@Disabled
+public class SamplePark extends MyOpModeNEW {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -157,7 +159,7 @@ public class TFCraterAndMarker extends MyOpModeNEW {
         motorArmRight.setPower(0);
 
         setMotors(0.3, 0.3);
-        Thread.sleep(1000);
+        Thread.sleep(1350);
         stopMotors();
 
         gyroInit();
@@ -315,200 +317,47 @@ public class TFCraterAndMarker extends MyOpModeNEW {
             }
 
 
-            turnCorr(0.6, 0, 2500);
+            turnCorr(0.4, 0, 2500);
 
             //moveTo(-0.4,75,1000);
             //center
             if (target.equals("Center")) {
-                moveEncoder(-0.6, 600 , 3000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.3, 300, 3000);
-
-                Thread.sleep(250);
-
-                turnCorr(0.6,-87.5,2000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6,1675,2000);
-
-                Thread.sleep(250);
-
-                turnCorr(0.6,-47.5,2000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6,320,1500);
-
-                Thread.sleep(250);
-
-                unfold();
-
-                Thread.sleep(250);
-
-                manip.setPower(-1);
-                Thread.sleep(1000);
-                manip.setPower(0);
-
-                Thread.sleep(250);
-
-                motorArmLeft.setPower(-0.75);
-                motorArmRight.setPower(0.75);
-                Thread.sleep(2000);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
-                moveEncoder(-0.6, 100, 500);
-
-                turnCorr(0.6,-60,750);
-
-                Thread.sleep(250);
-
-                moveEncoder(-0.6, 100, 500);
-
-                Thread.sleep(100);
-
-                turnCorr(0.6,-95,750);
-
-                moveEncoder(-0.6,1700,2000);
-
-                motorArmLeft.setPower(0.65);
-                motorArmRight.setPower(-0.65);
-                turnCorr(0.4,-180,1250);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
-
-
-
-//                turnCorr(.4,136.5,1500);
-//                moveTo(0.4,600);
-////                moveTo(0.4,950, 5000);
-//
-//                Thread.sleep(250);
+                moveEncoder(-0.6, 725 , 2500);
+                markerDeploy.setPosition(0.8);
 
 
             } else if (target.equals("Left")) {
                 //left
-                turnCorr(0.4,38,2500);
-
-                Thread.sleep(250);
-
-                moveEncoder(-0.6,750,1500);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6, 150, 3000);
-
-                Thread.sleep(250);
-
-                turnCorr(0.6,-87.5,2000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6,1675,2000);
-
-                Thread.sleep(250);
-
-                turnCorr(0.6,-47.5,2000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6,320,1500);
-
-                Thread.sleep(250);
-
-                unfold();
-
-                Thread.sleep(250);
-
-                manip.setPower(-1);
-                Thread.sleep(1000);
-                manip.setPower(0);
-
-                Thread.sleep(250);
-
-                motorArmLeft.setPower(-0.75);
-                motorArmRight.setPower(0.75);
-                Thread.sleep(2000);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
-                moveEncoder(-0.6, 100, 500);
-
-                turnCorr(0.6,-60,750);
-
-                Thread.sleep(250);
-
-                moveEncoder(-0.6, 100, 500);
-
-                Thread.sleep(100);
-
-                turnCorr(0.6,-96,750);
-
-                moveEncoder(-0.6,1700,2000);
-
-                motorArmLeft.setPower(0.65);
-                motorArmRight.setPower(-0.65);
-                turnCorr(0.4,-180,1250);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
+                turnCorr(0.6,38,2500);
+                moveEncoder(-0.6, 825 , 2500);
+                markerDeploy.setPosition(0.8);
+//
 
             } else if (target.equals("Right")) {
             //right
 
-                moveEncoder(-0.6, 100,500);
-
-                turnCorr(0.6, -10,450);
-
-                Thread.sleep(250);
-
-                moveEncoder(-0.6, 200, 1000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6, 300, 1000);
-
-                Thread.sleep(250);
-
-                turnCorr(0.6,-87.5,2000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6,950,1000);
-
-                Thread.sleep(250);
-
-                turnCorr(0.6,-47.5,2000);
-
-                Thread.sleep(250);
-
-                moveEncoder(0.6,320,1500);
-
-                Thread.sleep(250);
-
-                unfold();
-
-                Thread.sleep(250);
-
-                manip.setPower(-1);
-                Thread.sleep(1000);
-                manip.setPower(0);
-
-                Thread.sleep(250);
-
-                motorArmLeft.setPower(-0.75);
-                motorArmRight.setPower(0.75);
-                Thread.sleep(2000);
-                motorArmLeft.setPower(0.0);
-                motorArmRight.setPower(0.0);
-
-                turnCorr(0.6, -40,750);
-
-                moveEncoder(-0.6, 750, 750);
+                turnCorr(0.6, -40,2500); // pee pee
+                moveEncoder(-0.6, 700 , 2500);
+                markerDeploy.setPosition(0.8);
+//                turnCorr(0.4,30,2000);
+//                moveTo(-0.4,75);
+//                return to origin
+//                turnCorr(.4,0,1500);
+//                moveTo(0.4, 70);
+//                turnCorr(0.4,90, 2000);
+//                moveTo(-0.4, 1425);
+//
+//                turnCorr(.4,133,1500);
+//
+//                moveTo(-0.4,250);
+//                markerDeploy.setPosition(0.8);
+//                Thread.sleep(1200);
+//                markerDeploy.setPosition(.2);
+//
+//                moveTo(0.4,450);
+//                turnCorr(.4,138,2000);
+//                moveTo(0.4,450);
+//                moveTo(0.4,950, 5000);
 
 
             }

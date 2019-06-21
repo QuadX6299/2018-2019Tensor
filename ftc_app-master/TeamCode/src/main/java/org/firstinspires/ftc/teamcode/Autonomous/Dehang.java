@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode.Autonomous;///* Copyright (c) 2017 FIRST.
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -38,7 +39,7 @@ import org.firstinspires.ftc.teamcode.Library.MyOpModeNEW;
 //
 
 @Autonomous(name="Dehang", group="DogeCV")
-
+@Disabled
 public class Dehang extends MyOpModeNEW
 {
 

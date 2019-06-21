@@ -308,7 +308,7 @@ public abstract class MyOpModeNEW extends LinearOpMode {
             }
 
             //Output = (Error * P) + (Error_Over_Time * I) + Bias
-            newPow = (pow * (Math.abs(error) / 70)+.3); //Using the error to calculate our power.
+            newPow = (pow * (Math.abs(error) / 60)+.3); //Using the error to calculate our power.
             if (newPow < .15)
                 newPow = .1;
 
@@ -487,9 +487,11 @@ public abstract class MyOpModeNEW extends LinearOpMode {
 
 
     public int getEncoderAverageBase(){
+
+
         int encoderSum = Math.abs(motorBL.getCurrentPosition()) + Math.abs(motorBR.getCurrentPosition());
 
-        return encoderSum / 2;
+        return encoderSum/2;
     }
 
     public int getEncoderAverageArm(){
@@ -663,10 +665,10 @@ public abstract class MyOpModeNEW extends LinearOpMode {
                     setMotors(pow, pow / red);
                 else
                     setMotors(pow, pow);
-//                telemetry.addData("Gyro", getGyroYaw());
-//                telemetry.addData("Gyro Error", gyroError);
-//                telemetry.addData("Encoder", getEncoderAverage());
-//                telemetry.update();
+                telemetry.addData("Gyro", getGyroYaw());
+                telemetry.addData("Gyro Error", gyroError);
+                telemetry.addData("Encoder", getEncoderAverageBase());
+                telemetry.update();
 //                Log.w("Gyro", "" + getGyroYaw());
                 idle();
             }
@@ -692,6 +694,24 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         gyroError = getGyroYaw() + gyroError;
     }
 
+    public void moveEncoder(double power, double distance, double timeout)
+    {
+        resetEncoders();
+
+        ElapsedTime time = new ElapsedTime();
+
+        time.reset();
+
+        while(getEncoderAverageBase() < distance && time.seconds() < timeout && opModeIsActive())
+        {
+            setMotors(power,power);
+            telemetry.addData("Encoder: " , getEncoderAverageBase());
+            telemetry.update();
+        }
+
+        stopMotors();
+    }
+
     public void resetEncoders() {
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -702,6 +722,109 @@ public abstract class MyOpModeNEW extends LinearOpMode {
         motorBL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorFR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    public void unfold(){
+        rightBoxRotate.setPosition(0.15);
+        leftBoxRotate.setPosition(0.85);
+
+        motorArmLeft.setPower(0.5);
+        motorArmRight.setPower(-0.5);
+        try {
+            Thread.sleep(1100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        // moveTo(0.4,20);
+
+
+        // Thread.sleep(1000);
+
+
+        rightBoxRotate.setPosition(.345);
+        leftBoxRotate.setPosition(.655);
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        motorArmLeft.setPower(0.5);
+        motorArmRight.setPower(-0.5);
+        try {
+            Thread.sleep(1150);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        setMotors(-0.4,-0.4);
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        setMotors(0,0);
+
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        motorArmLeft.setPower(0.5);
+        motorArmRight.setPower(-0.5);
+        try {
+            Thread.sleep(475);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+        //up
+        //servo init position
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        motorArmLeft.setPower(-0.5);
+        motorArmRight.setPower(0.5);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        motorArmLeft.setPower(0);
+        motorArmRight.setPower(0);
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        moveEncoder(0.4,200, 2000);
+
     }
 }
 
